@@ -1,10 +1,12 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
+const { User } = require("./models/user");
+const mongoose = require("mongoose");
+
 require("dotenv").config();
 
 const app = express();
-const mongoose = require("mongoose");
 
 // Database connection
 mongoose.connect(process.env.DATABASE);
@@ -15,16 +17,13 @@ app.use(bodyParser.json());
 //Parses cookie header
 app.use(cookieParser());
 
-// Entities
-const { User } = require("./entities/user");
-
 // SignUp
 app.post("/webshop/users/signup", (request, response) => {
   let user = new User(request.body);
   // Add user to Database => Error handling
   user.save((error, document) => {
     if (error) {
-      return res.json({
+      return response.json({
         success: false,
         error
       });
