@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const token = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 const SALT = 12;
@@ -55,7 +55,7 @@ const userSchema = new Schema({
 
 // Password hashing before user persistence
 userSchema.pre("save", function(next) {
-  var user = this;
+  let user = this;
   // New user/existing user updating password
   if (user.isModified("password")) {
     bcrypt.genSalt(SALT, function(error, salt) {
@@ -79,9 +79,9 @@ userSchema.pre("save", function(next) {
 });
 
 // New token
-userSchema.createToken = function(callback) {
+userSchema.methods.createToken = function(callback) {
   let user = this;
-  let token = token.sign(user._id.toHexString(), process.env.KeyToGenerateJWTs);
+  let token = jwt.sign(user._id.toHexString(), process.env.KeyToGenerateJWTs);
 
   // Store token @ user in Database
   user.token = token;
@@ -90,19 +90,41 @@ userSchema.createToken = function(callback) {
       return callback(error);
     } else {
       // User with token
-      cb(null, user);
+      callback(null, user);
     }
   });
 };
 
 // Check if password match
-userSchema.methods.checkPassword = function(password, callback) {
+userSchema.methods.verifyPassword = function(password, callback) {
   bcrypt.compare(password, this.password, (error, match) => {
     if (error) {
       return callback(error);
     } else {
       callback(null, match);
     }
+  });
+};
+
+// Verify user token
+userSchema.statics.verifyToken = function(token, callback) {
+  let user = this;
+
+  // If token is valid return userID
+  jwt.verify(token, process.env.KeyToGenerateJWTs, (error, decodedToken) => {
+    user.findOne(
+      {
+        _id: decodedToken,
+        token: token
+      },
+      (error, user) => {
+        if (error) {
+          return callback(error);
+        } else {
+          callback(null, user);
+        }
+      }
+    );
   });
 };
 
