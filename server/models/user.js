@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 const SALT = 12;
 
-// Creates user schema
+// User Schema
 let Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -17,13 +17,7 @@ const userSchema = new Schema({
     type: String
   },
 
-  name: {
-    type: String,
-    required: true,
-    maxLength: 40
-  },
-
-  lastName: {
+  fullName: {
     type: String,
     required: true,
     maxLength: 40

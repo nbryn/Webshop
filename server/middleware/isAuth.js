@@ -1,7 +1,7 @@
 const { User } = require("../models/user");
 
-// Authorization
-let authorization = (request, response, next) => {
+// Authentication
+let isAuth = (request, response, next) => {
   let token = request.cookies.authorized;
 
   User.verifyToken(token, (error, user) => {
@@ -13,7 +13,7 @@ let authorization = (request, response, next) => {
         error: true
       });
     } else {
-      // Push valid token and user to request
+      // Push valid token and user data to request
       request.token = token;
       request.user = user;
       next();
@@ -21,4 +21,4 @@ let authorization = (request, response, next) => {
   });
 };
 
-module.exports = { authorization };
+module.exports = { isAuth };
