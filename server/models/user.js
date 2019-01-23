@@ -123,5 +123,4 @@ userSchema.statics.verifyToken = function(token, callback) {
 };
 
 const User = mongoose.model("user", userSchema);
-
 module.exports = { User };

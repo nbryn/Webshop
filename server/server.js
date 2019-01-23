@@ -9,6 +9,7 @@ const app = express();
 // Models
 const { User } = require("./models/user");
 const { Author } = require("./models/author");
+const { Book } = require("./models/book");
 
 // Middleware
 const cookieParser = require("cookie-parser");
@@ -18,14 +19,14 @@ const { isAdmin } = require("./middleware/isAdmin");
 
 // Database connection
 mongoose.connect(process.env.DATABASE);
-// Handl HTTP POST requests
+// Extract body of incoming request stream and expose it on request.body
 app.use(bodyParser.urlencoded({ extended: true }));
 // Only JSON format
 app.use(bodyParser.json());
 // Parse cookie header
 app.use(cookieParser());
 
-// ------------------------------- USER ------------------------------ //
+// ------------------------------- USERS ------------------------------ //
 
 // Authentication => true/false => next => request, response
 app.get("/webshop/users/auth", isAuth, (request, response) => {
@@ -43,7 +44,7 @@ app.get("/webshop/users/auth", isAuth, (request, response) => {
 // SignUp
 app.post("/webshop/users/signup", (request, response) => {
   const user = new User(request.body);
-  // Add user to Database => Error handling
+  // Persist User => Error handling
   try {
     user.save((error, document) => {
       return response.status(404).json({
@@ -100,18 +101,18 @@ app.get("/webshop/users/signout", isAuth, (request, response) => {
   // Check if user is signed in
   try {
     User.findOneAndUpdate({ _id: request.user._id }, { token: "" }, () => {
-      return response.sendStatus(400).json({
+      return response.status(400).json({
         completed: true
       });
     });
   } catch (error) {
-    return response.sendStatus(404).json({
+    return response.status(404).json({
       completed: false
     });
   }
 });
 
-// ------------------------------- AUTHOR ------------------------------ //
+// ------------------------------- AUTHORS ------------------------------ //
 
 // Persist Author
 app.post("/webshop/book/author", isAuth, isAdmin, (request, response) => {
@@ -119,7 +120,7 @@ app.post("/webshop/book/author", isAuth, isAdmin, (request, response) => {
 
   try {
     author.save((error, document) => {
-      return response.sendStatus(200).json({
+      return response.status(200).json({
         completed: true,
         author: document
       });
@@ -131,19 +132,66 @@ app.post("/webshop/book/author", isAuth, isAdmin, (request, response) => {
   }
 });
 
+// Find all Authors
 app.get("/webshop/book/authors", isAuth, (request, response) => {
   try {
     Author.find({}, (error, authors) => {
       response.status(200).send(authors);
     });
   } catch (error) {
-    return response.sendStatus(404).json({
+    return response.status(404).json({
       completed: false
     });
   }
 });
 
-// Localhost port
+// ------------------------------- BOOKS ------------------------------ //
+
+// Persist Book
+app.post("/webshop/book", isAuth, isAdmin, (request, response) => {
+  let book = new Book(request.body);
+
+  try {
+    book.save((error, document) => {
+      return response.status(200).json({
+        completed: true,
+        book: document
+      });
+    });
+  } catch (error) {
+    return response.status(404).json({
+      completed: false
+    });
+  }
+});
+
+// Find Book(s)
+app.get("/webshop/book_by_id", (request, response) => {
+  let items, ids;
+  let type = request.query.type;
+  // Convert String to Array of Books
+  if (type === "array") {
+    ids = request.query.id.split(",");
+    items = ids.map(id => {
+      return mongoose.Types.ObjectId(id);
+    });
+  }
+
+  // Get Book(s) from Database and populate author field with actual author
+  try {
+    Book.find({ _id: { $in: items } })
+      .populate("author")
+      .exec((error, docs) => {
+        return response.status(200).send(docs);
+      });
+  } catch (error) {
+    return response.status(404).json({
+      completed: false
+    });
+  }
+});
+
+// Localhost Port
 const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
