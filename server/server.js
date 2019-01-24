@@ -119,10 +119,10 @@ app.post("/webshop/book/author", isAuth, isAdmin, (request, response) => {
   let author = new Author(request.body);
 
   try {
-    author.save((error, document) => {
+    author.save((error, author) => {
       return response.status(200).json({
         completed: true,
-        author: document
+        author: author
       });
     });
   } catch (error) {
@@ -152,10 +152,10 @@ app.post("/webshop/book", isAuth, isAdmin, (request, response) => {
   let book = new Book(request.body);
 
   try {
-    book.save((error, document) => {
+    book.save((error, book) => {
       return response.status(200).json({
         completed: true,
-        book: document
+        book: book
       });
     });
   } catch (error) {
@@ -165,7 +165,7 @@ app.post("/webshop/book", isAuth, isAdmin, (request, response) => {
   }
 });
 
-// Find Book(s)
+// Get Book(s) by id - e.g. /webshop/book_by_id?id=xxx&type=xxx
 app.get("/webshop/book_by_id", (request, response) => {
   let items, ids;
   let type = request.query.type;
@@ -181,8 +181,30 @@ app.get("/webshop/book_by_id", (request, response) => {
   try {
     Book.find({ _id: { $in: items } })
       .populate("author")
-      .exec((error, docs) => {
-        return response.status(200).send(docs);
+      .exec((error, books) => {
+        return response.status(200).send(books);
+      });
+  } catch (error) {
+    return response.status(404).json({
+      completed: false
+    });
+  }
+});
+
+// Get most purchased book(s) - e.g. "/webshop/book_by_sold?sortBy=purchased&order=desc&limit=4"
+app.get("/webshop/book_by_sold", (request, response) => {
+  // Default values if not present in query
+  let order = request.query.order ? request.query.order : "asc";
+  let sortBy = request.query.sortBy ? request.query.sortBy : "_id";
+  let limit = request.query.limit ? parseInt(request.query.limit) : 80;
+
+  try {
+    Book.find()
+      .populate("author")
+      .sort([[sortBy, order]])
+      .limit(limit)
+      .exec((error, books) => {
+        return response.status(200).send(books);
       });
   } catch (error) {
     return response.status(404).json({
