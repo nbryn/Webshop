@@ -1,32 +1,46 @@
-.App {
+.noscroll {
+  overflow: hidden;
+}
+
+.background_footer {
+  background: #272723;
+  height: 208px;
+}
+
+footer .logo {
   text-align: center;
+  font-family: "Monoton", cursive;
+  color: #ffffff;
+  font-size: 40px;
+  padding: 50px 0px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.background {
+  position: relative !important;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  min-height: 10rem;
+  padding: 12rem 0;
+  min-height: 75vh;
+  padding-top: 85px;
+  background: -webkit-gradient(
+      cover,
+      cover,
+      cover,
+      from(rgba(22, 22, 22, 0.1)),
+      color-stop(75%, rgba(22, 22, 22, 0.5)),
+      to(#161616)
+    ),
+    url("../src/img/background.jpg");
+  background: linear-gradient(
+      to bottom,
+      rgba(22, 22, 22, 0.1) 0%,
+      rgba(22, 22, 22, 0.5) 75%,
+      #161616 100%
+    ),
+    url("../src/img/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
