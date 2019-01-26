@@ -8,6 +8,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper";
+import { connect } from "react-redux";
+import { newUser } from "../../actions/userAction";
 
 const styles = theme => ({
   main: {
@@ -43,6 +45,37 @@ const styles = theme => ({
 });
 
 class SignUp extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      fullName: "",
+      email: "",
+      password: ""
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+
+    const user = {
+      fullName: this.state.fullName,
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    this.props.newUser(user, this.props.history);
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -53,14 +86,30 @@ class SignUp extends Component {
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
-          <form className={classes.form} autoComplete="off">
+          <form
+            onSubmit={this.onSubmit}
+            className={classes.form}
+            autoComplete="off"
+          >
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Full Name</InputLabel>
-              <Input id="text" name="text" autoFocus />
+              <InputLabel htmlFor="text">Full Name</InputLabel>
+              <Input
+                id="text"
+                name="fullName"
+                value={this.state.fullName}
+                onChange={this.onChange}
+                autoFocus
+              />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoFocus />
+              <InputLabel htmlFor="email">Email</InputLabel>
+              <Input
+                id="email"
+                name="email"
+                value={this.state.email}
+                onChange={this.onChange}
+                autoFocus
+              />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
@@ -68,7 +117,8 @@ class SignUp extends Component {
                 name="password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                value={this.state.password}
+                onChange={this.onChange}
               />
             </FormControl>
 
@@ -89,7 +139,16 @@ class SignUp extends Component {
 }
 
 SignUp.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  newUser: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(SignUp);
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+const styledComponent = withStyles(styles)(SignUp);
+export default connect(
+  mapStateToProps,
+  { newUser }
+)(styledComponent);
