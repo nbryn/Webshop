@@ -1,6 +1,7 @@
 // Dependencies
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 require("dotenv").config();
 
@@ -25,6 +26,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Parse cookie header
 app.use(cookieParser());
+// Allow cors
+app.use(cors());
 
 // ------------------------------- USERS ------------------------------ //
 
@@ -47,12 +50,12 @@ app.post("/webshop/users/signup", (request, response) => {
   // Persist User => Error handling
   try {
     user.save((error, document) => {
-      return response.status(404).json({
+      return response.status(200).json({
         completed: true
       });
     });
   } catch (error) {
-    response.status(404).json({
+    response.status(400).json({
       completed: false,
       error
     });
@@ -64,7 +67,7 @@ app.post("/webshop/users/signin", (request, response) => {
   // Locate email in Database
   User.findOne({ email: request.body.email }, (error, user) => {
     if (!user) {
-      return response.status(404).json({
+      return response.status(400).json({
         completed: false,
         message: "No such email"
       });
@@ -72,14 +75,14 @@ app.post("/webshop/users/signin", (request, response) => {
       // Compare user input with password in Database
       user.verifyPassword(request.body.password, (error, match) => {
         if (!match) {
-          return response.status(404).json({
+          return response.status(401).json({
             completed: false,
             message: "Email and password does not match"
           });
         } else {
           user.createToken((error, user) => {
             if (error) {
-              return response.status(400).send(error);
+              return response.status(200).send(error);
             } else {
               // Set cookie value = token & confirm login
               response

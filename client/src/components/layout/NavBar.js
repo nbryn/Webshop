@@ -37,11 +37,7 @@ function ButtonAppBar(props) {
           </Typography>
 
           <Button>
-            <Link
-              to="/
-            home"
-              color="inherit"
-            >
+            <Link to="/" color="inherit">
               Sign In
             </Link>
           </Button>

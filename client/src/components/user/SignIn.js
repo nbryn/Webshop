@@ -9,6 +9,8 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { login } from "../../actions/userActions";
 
 const styles = theme => ({
   main: {
@@ -43,7 +45,35 @@ const styles = theme => ({
   }
 });
 
-class Home extends Component {
+class SignIn extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      email: "",
+      password: ""
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+
+    let LoginRequest = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    this.props.login(LoginRequest, this.props.history);
+  }
+
+  onChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -53,10 +83,20 @@ class Home extends Component {
           <Typography component="h1" variant="h5">
             Sign In
           </Typography>
-          <form className={classes.form} autoComplete="off">
+          <form
+            onSubmit={this.onSubmit}
+            className={classes.form}
+            autoComplete="off"
+          >
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoFocus />
+              <Input
+                id="email"
+                name="email"
+                value={this.state.email}
+                onChange={this.onChange}
+                autoFocus
+              />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
@@ -64,7 +104,8 @@ class Home extends Component {
                 name="password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                value={this.state.fullName}
+                onChange={this.onChange}
               />
             </FormControl>
 
@@ -84,7 +125,7 @@ class Home extends Component {
               color="primary"
               className={classes.submit}
             >
-              <Link to="/signup" color="inherit">
+              <Link to="/signup" color="primary">
                 Sign Up
               </Link>
             </Button>
@@ -95,8 +136,18 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = {
-  classes: PropTypes.object.isRequired
+SignIn.propTypes = {
+  classes: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Home);
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+const styledComponent = withStyles(styles)(SignIn);
+export default connect(
+  mapStateToProps,
+  { login }
+)(styledComponent);
