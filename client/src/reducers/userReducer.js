@@ -1,25 +1,14 @@
-import { SET_USER } from "../actions/types";
+import { NEW_USER, SET_USER, AUTH_USER } from "../actions/types";
 
-const initialState = {
-  validToken: false,
-  user: {}
-};
-
-const payload = payload => {
-  if (payload) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-export default function(state = initialState, action) {
+// Update store when user action is dispatched
+export default function(state = {}, action) {
   switch (action.type) {
+    case NEW_USER:
+      return { ...state, signUp: action.payload };
     case SET_USER:
-      return Object.assign({}, state, {
-        validToken: payload(action.payload),
-        user: action.payload
-      });
+      return { ...state, login: action.payload };
+    case AUTH_USER:
+      return { ...state, userData: action.payload };
     default:
       return state;
   }

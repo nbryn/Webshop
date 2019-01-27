@@ -59,6 +59,7 @@ class SignIn extends Component {
   }
 
   onSubmit(event) {
+    // Prevents default submit action
     event.preventDefault();
 
     let LoginRequest = {
@@ -66,9 +67,11 @@ class SignIn extends Component {
       password: this.state.password
     };
 
+    // Dispatch login action
     this.props.login(LoginRequest, this.props.history);
   }
 
+  // Update state on change
   onChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -119,7 +122,6 @@ class SignIn extends Component {
               Sign in
             </Button>
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               color="primary"
@@ -142,11 +144,17 @@ SignIn.propTypes = {
   user: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  user: state.user
-});
+// Data supplied to connect -> Access trough this.props.user
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
 
 const styledComponent = withStyles(styles)(SignIn);
+
+// Connect component to store -> Filter changes -> Provide relevant changes to component
+// Provides dispatch as default if no second argument
 export default connect(
   mapStateToProps,
   { login }

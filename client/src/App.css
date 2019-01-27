@@ -2,8 +2,17 @@
   overflow: hidden;
 }
 
+.card {
+  background: rgba(248, 250, 245, 0) !important;
+  width: 350px;
+}
+
+.btn-info {
+  background-color: rgb(15, 11, 241) !important;
+}
+
 .background_footer {
-  background: #272723;
+  background-color: #272723 !important;
   height: 208px;
 }
 
@@ -17,6 +26,7 @@ footer .logo {
 
 .background {
   position: relative !important;
+  display: flex;
   width: 100%;
   height: 100%;
   overflow: auto;

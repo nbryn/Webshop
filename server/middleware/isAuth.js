@@ -2,6 +2,7 @@ const { User } = require("../models/user");
 
 // Authentication
 let isAuth = (request, response, next) => {
+  // Token = authorizied field in cookie
   let token = request.cookies.authorized;
 
   User.verifyToken(token, (error, user) => {

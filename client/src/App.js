@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import "./Resources/css/styles.css";
+import "./resources/css/styles.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Store from "./Store";
 import Layout from "./components/layout/index";
 import SignIn from "./components/user/SignIn";
 import SignUp from "./components/user/SignUp";
-import { Provider } from "react-redux";
+import Dashboard from "./components/user/Dashboard";
+import IsAuth from "./components/security/IsAuth";
 
 class App extends Component {
   render() {
@@ -16,8 +18,14 @@ class App extends Component {
         <Router>
           <Layout>
             <Switch>
-              <Route exact path="/" component={SignIn} />
-              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/" component={IsAuth(SignIn, false)} />
+              <Route exact path="/signup" component={IsAuth(SignUp, false)} />
+
+              <Route
+                exact
+                path="/user/dashboard"
+                component={IsAuth(Dashboard, true)}
+              />
             </Switch>
           </Layout>
         </Router>
