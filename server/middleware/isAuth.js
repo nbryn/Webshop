@@ -1,4 +1,4 @@
-const { User } = require("../models/user");
+const { User } = require("./../models/User");
 
 // Authentication
 let isAuth = (request, response, next) => {

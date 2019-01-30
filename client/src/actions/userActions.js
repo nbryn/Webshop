@@ -13,7 +13,7 @@ export const newUser = (user, history) => async dispatch => {
     // Dispatch NEW_USER action to store
     dispatch({
       type: NEW_USER,
-      payload: {}
+      payload: response
     });
   } catch (error) {
     dispatch({
@@ -23,18 +23,17 @@ export const newUser = (user, history) => async dispatch => {
   }
 };
 // Try to log user in -> Dispatch SET_USER/GET_ERRORS action
-export const login = (signInRequest, history) => async dispatch => {
+export const login = signInRequest => async dispatch => {
   try {
     let response = await axios.post(
       "http://localhost:3001/webshop/users/signin",
       signInRequest
     );
-    history.push("/signup");
 
     // Dispatch SET_USER action to store
     dispatch({
       type: SET_USER,
-      payload: {}
+      payload: response
     });
   } catch (error) {
     dispatch({
@@ -46,12 +45,12 @@ export const login = (signInRequest, history) => async dispatch => {
 //Try to authenticate user -> Dispatch AUTH_USER/GET_ERRORS action
 export const authentication = () => async dispatch => {
   try {
-    let request = await axios.get("http://localhost:3001/webshop/users/auth");
+    let response = await axios.get("http://localhost:3001/webshop/users/auth");
 
     // Dispatch AUTH_USER action to store
     dispatch({
       type: AUTH_USER,
-      payload: {}
+      payload: response
     });
   } catch (error) {
     dispatch({

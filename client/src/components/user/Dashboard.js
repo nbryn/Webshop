@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import UserLayout from "./UserLayout";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Dashboard extends Component {
   render() {
@@ -34,7 +35,13 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  classes: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired
 };
 
-export default Dashboard;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(Dashboard);

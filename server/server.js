@@ -8,9 +8,9 @@ require("dotenv").config();
 const app = express();
 
 // Models
-const { User } = require("./models/user");
-const { Author } = require("./models/author");
-const { Book } = require("./models/book");
+const { User } = require("./models/User");
+const { Author } = require("./models/Author");
+const { Book } = require("./models/Book");
 
 // Middleware
 const cookieParser = require("cookie-parser");
@@ -36,11 +36,13 @@ app.get("/webshop/users/auth", isAuth, (request, response) => {
   response.status(200).json({
     admin: request.user.role === 0 ? false : true,
     authenticated: true,
+    _id: request.user.id,
     role: request.user.role,
     email: request.user.email,
-    fullName: request.user.lastName,
+    fullName: request.user.fullName,
+    token: request.user.token,
     history: request.user.history,
-    cart: request.user.cart
+    basket: request.user.basket
   });
 });
 
@@ -75,7 +77,7 @@ app.post("/webshop/users/signin", (request, response) => {
       // Compare user input with password in Database
       user.verifyPassword(request.body.password, (error, match) => {
         if (!match) {
-          return response.status(401).json({
+          return response.status(400).json({
             completed: false,
             message: "Email and password does not match"
           });

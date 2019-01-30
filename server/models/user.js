@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-require("dotenv").config();
 const SALT = 12;
+require("dotenv").config();
 
 // User Schema
 let Schema = mongoose.Schema;
@@ -75,7 +75,7 @@ userSchema.pre("save", function(next) {
 // New token
 userSchema.methods.createToken = function(callback) {
   let user = this;
-  let token = jwt.sign(user._id.toHexString(), process.env.KeyToGenerateJWTs);
+  let token = jwt.sign(user._id.toHexString(), process.env.SECRET);
 
   // Store token @ user in Database
   user.token = token;
@@ -105,10 +105,10 @@ userSchema.statics.verifyToken = function(token, callback) {
   let user = this;
 
   // If token is valid return userID
-  jwt.verify(token, process.env.KeyToGenerateJWTs, (error, decodedToken) => {
+  jwt.verify(token, process.env.SECRET, (error, decoded) => {
     user.findOne(
       {
-        _id: decodedToken,
+        _id: decoded,
         token: token
       },
       (error, user) => {

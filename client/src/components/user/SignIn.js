@@ -68,7 +68,7 @@ class SignIn extends Component {
     };
 
     // Dispatch login action
-    this.props.login(LoginRequest, this.props.history);
+    this.props.login(LoginRequest);
   }
 
   // Update state on change
