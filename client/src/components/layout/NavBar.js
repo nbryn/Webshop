@@ -1,54 +1,21 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
 
-const styles = {
-  root: {
-    flexGrow: 1
-  },
-  grow: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
-  }
-};
-
 function NavBar(props) {
-  const { classes } = props;
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Menu"
-          />
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            Shop
-          </Typography>
-
-          <Button>
-            <Link to="/" color="inherit">
-              Sign In
-            </Link>
-          </Button>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">
+              Home <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+        <span class="navbar-text">Logout</span>
+      </div>
+    </nav>
   );
 }
 
-NavBar.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(NavBar);
+export default NavBar;

@@ -3,8 +3,10 @@ import React, { Component } from "react";
 class Footer extends Component {
   render() {
     return (
-      <footer className="background_footer">
-        <div className="logo">Book Shop</div>
+      <footer class="app-footer">
+        <div>
+          <h5> BookShop </h5>
+        </div>
       </footer>
     );
   }

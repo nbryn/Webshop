@@ -23,12 +23,13 @@ export const newUser = (user, history) => async dispatch => {
   }
 };
 // Try to log user in -> Dispatch SET_USER/GET_ERRORS action
-export const login = signInRequest => async dispatch => {
+export const login = (signInRequest, history) => async dispatch => {
   try {
     let response = await axios.post(
       "http://localhost:3001/webshop/users/signin",
       signInRequest
     );
+    history.push("/user/dashboard");
 
     // Dispatch SET_USER action to store
     dispatch({
