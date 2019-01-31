@@ -15,7 +15,6 @@ const { Book } = require("./models/Book");
 // Middleware
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const { isAuth } = require("./middleware/isAuth");
 const { isAdmin } = require("./middleware/isAdmin");
 
 // Database connection
@@ -27,28 +26,42 @@ app.use(bodyParser.json());
 // Parse cookie header
 app.use(cookieParser());
 // Allow cors
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000"
+  })
+);
 
 // ------------------------------- USERS ------------------------------ //
 
 // Authentication => true/false => next => request, response
-app.get("/webshop/users/auth", isAuth, (request, response) => {
-  response.status(200).json({
-    admin: request.user.role === 0 ? false : true,
-    authenticated: true,
-    _id: request.user.id,
-    role: request.user.role,
-    email: request.user.email,
-    fullName: request.user.fullName,
-    token: request.user.token,
-    history: request.user.history,
-    basket: request.user.basket
+app.post("/webshop/users/auth", (request, response) => {
+  User.findOne({ token: request.body.token }, (error, user) => {
+    if (!user) {
+      return response.status(400).json({
+        completed: false,
+        message: "No such token"
+      });
+    } else {
+      return response.status(200).json({
+        admin: user.role === 0 ? false : true,
+        authenticated: true,
+        _id: user.id,
+        role: user.role,
+        email: user.email,
+        fullName: user.fullName,
+        token: user.token,
+        history: user.history,
+        basket: user.basket
+      });
+    }
   });
 });
 
 // SignUp
 app.post("/webshop/users/signup", (request, response) => {
-  const user = new User(request.body);
+  let user = new User(request.body);
   // Persist User => Error handling
   try {
     user.save((error, document) => {
@@ -64,7 +77,7 @@ app.post("/webshop/users/signup", (request, response) => {
   }
 });
 
-// SignIn
+// Sign In
 app.post("/webshop/users/signin", (request, response) => {
   // Locate email in Database
   User.findOne({ email: request.body.email }, (error, user) => {
@@ -84,14 +97,15 @@ app.post("/webshop/users/signin", (request, response) => {
         } else {
           user.createToken((error, user) => {
             if (error) {
-              return response.status(200).send(error);
+              return response.status(400).send(error);
             } else {
               // Set cookie value = token & confirm login
               response
                 .cookie("authorized", user.token)
                 .status(200)
                 .json({
-                  completed: true
+                  user,
+                  token: user.token
                 });
             }
           });
@@ -101,8 +115,8 @@ app.post("/webshop/users/signin", (request, response) => {
   });
 });
 
-// SignOut
-app.get("/webshop/users/signout", isAuth, (request, response) => {
+// Sign Out
+app.get("/webshop/users/signout", (request, response) => {
   // Check if user is signed in
   try {
     User.findOneAndUpdate({ _id: request.user._id }, { token: "" }, () => {
@@ -120,7 +134,7 @@ app.get("/webshop/users/signout", isAuth, (request, response) => {
 // ------------------------------- AUTHORS ------------------------------ //
 
 // Persist Author
-app.post("/webshop/book/author", isAuth, isAdmin, (request, response) => {
+app.post("/webshop/book/author", isAdmin, (request, response) => {
   let author = new Author(request.body);
 
   try {
@@ -138,7 +152,7 @@ app.post("/webshop/book/author", isAuth, isAdmin, (request, response) => {
 });
 
 // Find all Authors
-app.get("/webshop/book/authors", isAuth, (request, response) => {
+app.get("/webshop/book/authors", (request, response) => {
   try {
     Author.find({}, (error, authors) => {
       response.status(200).send(authors);
@@ -153,7 +167,7 @@ app.get("/webshop/book/authors", isAuth, (request, response) => {
 // ------------------------------- BOOKS ------------------------------ //
 
 // Persist Book
-app.post("/webshop/book", isAuth, isAdmin, (request, response) => {
+app.post("/webshop/book", isAdmin, (request, response) => {
   let book = new Book(request.body);
 
   try {

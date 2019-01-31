@@ -24,7 +24,7 @@ class App extends Component {
               <Route
                 exact
                 path="/user/dashboard"
-                component={IsAuth(Dashboard, false)}
+                component={IsAuth(Dashboard, true)}
               />
             </Switch>
           </Layout>

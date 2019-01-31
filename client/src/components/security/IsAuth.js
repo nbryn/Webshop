@@ -17,14 +17,12 @@ export default function(Component, showPage, admin = null) {
         console.log(user);
 
         // Check if user is logged in
-        if (!user.authenticated) {
+        if (!user.data.authenticated) {
           if (showPage) {
             this.props.history.push("/");
           }
         } else {
-          if (!showPage) {
-            this.props.history.push("/user/dashboard");
-          }
+          this.props.history.push("/user/dashboard");
         }
 
         this.setState({

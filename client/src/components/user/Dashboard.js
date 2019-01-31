@@ -21,12 +21,12 @@ class Dashboard extends Component {
                 Edit Info
               </Link>
             </button>
+          </div>
 
-            <div className="card">
-              <h2>Orders</h2>
-              <br />
-              <h5>History</h5>
-            </div>
+          <div className="card">
+            <h2>Orders</h2>
+            <br />
+            <h5>History</h5>
           </div>
         </div>
       </UserLayout>

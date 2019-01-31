@@ -1,5 +1,5 @@
 const proxy = require("http-proxy-middleware");
 
 module.exports = function(app) {
-  app.use(proxy("/webshop", { target: "http://localhost:3001/" }));
+  app.use(proxy("/webshop", { target: "https://localhost:3001/" }));
 };

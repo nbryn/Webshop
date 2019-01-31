@@ -6,7 +6,7 @@ const UserLayout = props => {
   return (
     <div className="container">
       <SideBar />
-      <div className="user_right">{props.children}</div>
+      <div className="children">{props.children}</div>
     </div>
   );
 };

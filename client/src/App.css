@@ -40,8 +40,16 @@
 }
 
 .card {
+  display: flex;
   background: rgba(248, 250, 245, 0) !important;
   width: 350px;
+}
+
+.children {
+  position: absolute;
+  display: flex;
+  top: 2px;
+  left: 150px;
 }
 
 .btn-info {
