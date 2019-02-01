@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Store from "./Store";
+import Home from "./components/Home";
 import Layout from "./components/layout/index";
 import SignIn from "./components/user/SignIn";
 import SignUp from "./components/user/SignUp";
@@ -18,8 +19,9 @@ class App extends Component {
         <Router>
           <Layout>
             <Switch>
-              <Route exact path="/" component={IsAuth(SignIn, false)} />
+              <Route exact path="/signin" component={IsAuth(SignIn, false)} />
               <Route exact path="/signup" component={IsAuth(SignUp, false)} />
+              <Route exact path="/" component={IsAuth(Home, null)} />
 
               <Route
                 exact

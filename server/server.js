@@ -115,22 +115,6 @@ app.post("/webshop/users/signin", (request, response) => {
   });
 });
 
-// Sign Out
-app.get("/webshop/users/signout", (request, response) => {
-  // Check if user is signed in
-  try {
-    User.findOneAndUpdate({ _id: request.user._id }, { token: "" }, () => {
-      return response.status(400).json({
-        completed: true
-      });
-    });
-  } catch (error) {
-    return response.status(404).json({
-      completed: false
-    });
-  }
-});
-
 // ------------------------------- AUTHORS ------------------------------ //
 
 // Persist Author

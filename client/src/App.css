@@ -3,7 +3,7 @@
 }
 
 .navbar.bg-light {
-  background-color: rgb(91, 141, 173) !important;
+  background-color: #007bff !important;
 }
 
 .sidebar {
@@ -36,7 +36,7 @@
 .app-footer {
   height: 100px;
   text-align: center;
-  background-color: rgba(18, 33, 56, 0.856) !important;
+  background-color: #007bff !important;
 }
 
 .card {

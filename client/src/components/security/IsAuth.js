@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { authentication } from "../../actions/userActions";
 
 // Check users access level
-export default function(Component, showPage, admin = null) {
+export default function(Comp, showPage, admin = null) {
   class IsAuth extends Component {
     state = {
       showPage: true
@@ -14,7 +14,6 @@ export default function(Component, showPage, admin = null) {
     componentDidMount() {
       this.props.dispatch(authentication()).then(response => {
         let user = this.props.user.userData;
-        console.log(user);
 
         // Check if user is logged in
         if (!user.data.authenticated) {
@@ -22,28 +21,26 @@ export default function(Component, showPage, admin = null) {
             this.props.history.push("/");
           }
         } else {
-          this.props.history.push("/user/dashboard");
+          this.setState({
+            showPage: false
+          });
         }
-
-        this.setState({
-          showPage: false
-        });
       });
     }
 
     render() {
       //Loader Icon
-      /*if (this.state.showPage) {
+      if (this.state.showPage) {
         return (
           <div className="main_loader">
             <CircularProgress style={{ color: "#2451F3" }} thickness={6} />
           </div>
         );
       }
-      */
+
       return (
         <div>
-          <Component {...this.props} user={this.props.user} />
+          <Comp {...this.props} user={this.props.user} />
         </div>
       );
     }

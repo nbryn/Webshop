@@ -8,7 +8,7 @@ export const newUser = (user, history) => async dispatch => {
       "http://localhost:3001/webshop/users/signup",
       user
     );
-    history.push("/");
+    history.push("/signin");
 
     // Dispatch NEW_USER action to store
     dispatch({
@@ -31,11 +31,9 @@ export const login = (signInRequest, history) => async dispatch => {
     );
     history.push("/user/dashboard");
 
+    // Set token in local storage
     const { token } = response.data;
     localStorage.setItem("jwtToken", token);
-
-    /*const { token } = response.data;
-    document.cookie = `authorized=${token};value=token;path='/'`;*/
 
     // Dispatch SET_USER action to store
     dispatch({
@@ -52,6 +50,7 @@ export const login = (signInRequest, history) => async dispatch => {
 //Try to authenticate user -> Dispatch AUTH_USER action
 export const authentication = () => async dispatch => {
   try {
+    // Get token from local storage
     let jwtToken = localStorage.getItem("jwtToken");
     let request = { token: jwtToken };
     let response = await axios.post(
@@ -70,4 +69,12 @@ export const authentication = () => async dispatch => {
       payload: error.response.data
     });
   }
+};
+
+export const signOut = () => dispatch => {
+  localStorage.removeItem("jwtToken");
+  dispatch({
+    type: SET_USER,
+    payload: {}
+  });
 };

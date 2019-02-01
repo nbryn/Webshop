@@ -1,20 +1,19 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import UserLayout from "./UserLayout";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
 class Dashboard extends Component {
   render() {
+    let user = this.props.user.userData;
     return (
       <UserLayout>
         <div>
           <div className="card">
-            <h3>User</h3>
+            <h3>Account Information</h3>
             <div>
-              <span>Name</span>
+              <span>{user.data.fullName} </span>
               <br />
-              <span>Email</span>
+              <span>{user.data.email}</span>
             </div>
             <button type="button" className="btn btn-info">
               <Link to="/user/user_profile" color="primary">
@@ -34,14 +33,4 @@ class Dashboard extends Component {
   }
 }
 
-Dashboard.propTypes = {
-  user: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  };
-};
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

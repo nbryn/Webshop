@@ -1,48 +1,46 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { signOut } from "../../actions/userActions";
+import PropTypes from "prop-types";
 
 class NavBar extends Component {
-  state = {
-    page: [
-      {
-        name: "Home",
-        linkTo: "/",
-        public: true
-      },
-      {
-        name: "Books",
-        linkTo: "/shop",
-        public: true
-      }
-    ],
-    user: [
-      {
-        name: "Sign In",
-        linkTo: "/signin",
-        public: true
-      },
-      {
-        name: "Sign Out",
-        linkTo: "/user/signout",
-        public: false
-      }
-    ]
-  };
+  signOut() {
+    this.props.signOut();
+    window.location.href = "/";
+  }
 
   render() {
-    return (
+    const isAuthenticated = (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/user/dashboard">
+        <Link className="navbar-brand" to="/user/dashboard">
           Home
-        </a>
+        </Link>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto" />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Books
+          </button>
+          <a
+            className="navbar-brand"
+            href="/"
+            onClick={this.signOut.bind(this)}
+          >
+            Sign Out
+          </a>
+        </div>
+      </nav>
+    );
+
+    const notAuthenticated = (
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <Link className="navbar-brand" to="/">
+          BookShop
+        </Link>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <a className="nav-link" href="#">
-                Home <span className="sr-only">(current)</span>
-              </a>
-            </li>
+            <li className="nav-item active" />
           </ul>
 
           <a className="navbar-brand" href="/">
@@ -51,7 +49,32 @@ class NavBar extends Component {
         </div>
       </nav>
     );
+
+    let topNavBarLinks;
+
+    // Show different links depending on auth
+    if (localStorage.getItem("jwtToken")) {
+      topNavBarLinks = isAuthenticated;
+    } else {
+      topNavBarLinks = notAuthenticated;
+    }
+
+    return <div> {topNavBarLinks} </div>;
   }
 }
 
-export default NavBar;
+NavBar.propTypes = {
+  signOut: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { signOut }
+)(NavBar);
