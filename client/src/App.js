@@ -21,7 +21,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/signin" component={IsAuth(SignIn, false)} />
               <Route exact path="/signup" component={IsAuth(SignUp, false)} />
-              <Route exact path="/" component={IsAuth(Home, null)} />
+              <Route exact path="/" component={IsAuth(Home, false)} />
 
               <Route
                 exact

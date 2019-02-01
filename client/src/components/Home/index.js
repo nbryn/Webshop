@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Slider from "./Slider";
+import Slides from "./Slides";
 
-class index extends Component {
+class Home extends Component {
   render() {
     return (
       <div>
-        <Slider />
+        <Slides />
       </div>
     );
   }
 }
-export default connect(mapStateToProps)(Home);
+export default Home;

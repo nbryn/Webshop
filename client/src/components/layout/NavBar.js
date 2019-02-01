@@ -18,7 +18,10 @@ class NavBar extends Component {
         </Link>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto" />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          <button
+            className="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+          >
             Books
           </button>
           <a

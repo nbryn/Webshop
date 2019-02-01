@@ -2,6 +2,13 @@
   overflow: hidden;
 }
 
+header .logo {
+  font-family: "Monoton", cursive;
+  color: #ffffff;
+  font-size: 40px;
+  padding: 11px 0px;
+}
+
 .navbar.bg-light {
   background-color: #007bff !important;
 }
@@ -66,22 +73,43 @@
   min-height: 75vh;
   padding-top: 85px;
   background: -webkit-gradient(
-      cover,
-      cover,
-      cover,
-      from(rgba(22, 22, 22, 0.1)),
-      color-stop(75%, rgba(22, 22, 22, 0.5)),
-      to(#161616)
-    ),
-    url("../src/img/background.jpg");
-  background: linear-gradient(
-      to bottom,
-      rgba(22, 22, 22, 0.1) 0%,
-      rgba(22, 22, 22, 0.5) 75%,
-      #161616 100%
-    ),
-    url("../src/img/background.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    cover,
+    cover,
+    cover,
+    from(rgba(22, 22, 22, 0.1)),
+    color-stop(75%, rgba(22, 22, 22, 0.5)),
+    to(#161616)
+  );
+}
+
+.offer_container .offer_image {
+  position: relative;
+  background-size: cover !important;
+  background-position: center left !important;
+  height: 600px !important;
+}
+
+.offer_container .offer_button {
+  position: absolute;
+  top: 45%;
+  left: 8%;
+}
+
+.offer_container .offer_button .tag {
+  background: #82828287;
+  color: #ffffff;
+  padding: 0px 20px;
+  text-transform: uppercase;
+  display: table;
+}
+
+.offer_container .offer_button .tag.title {
+  font-size: 70px;
+  font-weight: 700;
+}
+
+.offer_container .offer_button .tag.low_title {
+  font-size: 50px;
+  font-weight: 300;
+  margin-top: 10px;
 }
