@@ -113,3 +113,10 @@ header .logo {
   font-weight: 300;
   margin-top: 10px;
 }
+
+.top_shop {
+  margin-top: -100px;
+  border-bottom: 1px solid #999592;
+  padding: 20px 0px;
+  text-transform: uppercase;
+}

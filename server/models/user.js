@@ -100,27 +100,5 @@ userSchema.methods.verifyPassword = function(password, callback) {
   });
 };
 
-// Verify user token
-userSchema.statics.verifyToken = function(token, callback) {
-  let user = this;
-
-  // If token is valid return userID
-  jwt.verify(token, process.env.SECRET, (error, decoded) => {
-    user.findOne(
-      {
-        _id: decoded,
-        token: token
-      },
-      (error, user) => {
-        if (error) {
-          return callback(error);
-        } else {
-          callback(null, user);
-        }
-      }
-    );
-  });
-};
-
 const User = mongoose.model("user", userSchema);
 module.exports = { User };

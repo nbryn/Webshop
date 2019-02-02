@@ -11,6 +11,12 @@ const bookSchema = new Schema(
       required: true
     },
 
+    genre: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Genre",
+      required: true
+    },
+
     title: {
       type: String,
       unique: 1,

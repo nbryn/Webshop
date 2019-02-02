@@ -11,6 +11,7 @@ const app = express();
 const { User } = require("./models/User");
 const { Author } = require("./models/Author");
 const { Book } = require("./models/Book");
+const { Genre } = require("./models/Genre");
 
 // Middleware
 const cookieParser = require("cookie-parser");
@@ -168,7 +169,7 @@ app.post("/webshop/book", isAdmin, (request, response) => {
   }
 });
 
-// Get Book(s) by id - e.g. /webshop/book_by_id?id=xxx&type=xxx
+// Get Book(s) by id - e.g. /webshop/book_by_id?id=xxx&type=array
 app.get("/webshop/book_by_id", (request, response) => {
   let items, ids;
   let type = request.query.type;
@@ -179,11 +180,37 @@ app.get("/webshop/book_by_id", (request, response) => {
       return mongoose.Types.ObjectId(id);
     });
   }
-
-  // Get Book(s) from Database and populate author field with actual author
+  // Get Book(s) with specified id from Database and populate author & genre
   try {
     Book.find({ _id: { $in: items } })
       .populate("author")
+      .populate("genre")
+      .exec((error, books) => {
+        return response.status(200).send(books);
+      });
+  } catch (error) {
+    return response.status(404).json({
+      completed: false
+    });
+  }
+});
+
+// Get Book(s) by genre - e.g. /webshop/book_by_genre?genre=xxx&type=array
+app.get("/webshop/book_by_genre", isAdmin, (request, response) => {
+  let items, ids;
+  let type = request.query.type;
+  // Convert String to Array of Books
+  if (type === "array") {
+    ids = request.query.id.split(",");
+    items = ids.map(id => {
+      return mongoose.Types.ObjectId(id);
+    });
+  }
+  // Get Book(s) with specified genre from Database and populate author & genre
+  try {
+    Book.find({ genre: { $in: items } })
+      .populate("author")
+      .populate("genre")
       .exec((error, books) => {
         return response.status(200).send(books);
       });
@@ -209,6 +236,39 @@ app.get("/webshop/book_by_sold", (request, response) => {
       .exec((error, books) => {
         return response.status(200).send(books);
       });
+  } catch (error) {
+    return response.status(404).json({
+      completed: false
+    });
+  }
+});
+
+// ------------------------------- Genre ------------------------------ //
+
+// Persist Genre
+app.post("/webshop/book/genre", isAdmin, (request, response) => {
+  let genre = new Genre(request.body);
+
+  try {
+    genre.save((error, genre) => {
+      return response.status(200).json({
+        completed: true,
+        genre: genre
+      });
+    });
+  } catch (error) {
+    return response.status(400).json({
+      completed: false
+    });
+  }
+});
+
+// Get all Genres
+app.get("/webshop/book/genres", (request, response) => {
+  try {
+    Genre.find({}, (error, genres) => {
+      return response.status(200).send(genres);
+    });
   } catch (error) {
     return response.status(404).json({
       completed: false

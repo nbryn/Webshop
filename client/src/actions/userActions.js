@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ERRORS, NEW_USER, SET_USER, AUTH_USER } from "./types";
+import { NEW_USER, SET_USER, AUTH_USER } from "./types";
 
 // Try to persist user -> Dispatch NEW_User/GET_ERRORS action
 export const newUser = (user, history) => async dispatch => {
@@ -16,10 +16,7 @@ export const newUser = (user, history) => async dispatch => {
       payload: response
     });
   } catch (error) {
-    dispatch({
-      type: GET_ERRORS,
-      payload: error.response.data
-    });
+    throw error;
   }
 };
 // Try to log user in -> Dispatch SET_USER/GET_ERRORS action
@@ -41,10 +38,7 @@ export const login = (signInRequest, history) => async dispatch => {
       payload: response
     });
   } catch (error) {
-    dispatch({
-      type: GET_ERRORS,
-      payload: error.response.data
-    });
+    throw error;
   }
 };
 //Try to authenticate user -> Dispatch AUTH_USER action
@@ -64,10 +58,7 @@ export const authentication = () => async dispatch => {
       payload: response
     });
   } catch (error) {
-    dispatch({
-      type: GET_ERRORS,
-      payload: error.response.data
-    });
+    throw error;
   }
 };
 
