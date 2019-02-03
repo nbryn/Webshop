@@ -1,65 +1,79 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
-import Collapse from "@material-ui/core/Collapse";
 import Checkbox from "@material-ui/core/Checkbox";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconButton from "@material-ui/core/IconButton";
 
-class FilterCheckbox extends Component {
+const styles = theme => ({
+  root: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper
+  }
+});
+
+class FilterCheckbox extends React.Component {
   state = {
-    show: false,
-    checked: []
+    checked: [0]
   };
 
-  componentDidMount() {
-    if (this.props.initialState) {
-      this.setState({
-        show: this.props.initialState
-      });
+  handleToggle = value => () => {
+    const { checked } = this.state;
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
     }
-  }
 
-  handleClick() {
     this.setState({
-      show: !this.state.show
+      checked: newChecked
     });
-  }
-
-  renderList = () =>
-    this.props.list ? this.props.list.map(val => <ListItem />) : null;
-
-  handleArrow = () =>
-    this.state.show ? (
-      <FontAwesomeIcon className="icon" />
-    ) : (
-      <FontAwesomeIcon className="icon" />
-    );
+  };
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <div className="collapse_items_wrapper">
-        <List style={{ borderBottom: "1px solid #dbdbdb" }}>
-          <ListItem
-            onClick={this.handleClick}
-            style={{ padding: "10px 23px 10px 0" }}
-          >
-            <ListItemText
-              primary={this.props.title}
-              className="collapse_title"
-            />
-            {this.handleArrow()}
-          </ListItem>
-          <Collapse in={this.state.show} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              {this.renderList()}
-            </List>
-          </Collapse>
-        </List>
-      </div>
+      <List className={classes.root}>
+        <ListItemText primary={this.props.title} />
+        {this.props.list
+          ? this.props.list.map(value => (
+              <ListItem
+                key={value}
+                role={undefined}
+                dense
+                button
+                onClick={this.handleToggle(value)}
+              >
+                <Checkbox
+                  checked={this.state.checked.indexOf(value) !== -1}
+                  tabIndex={-1}
+                  disableRipple
+                />
+                <ListItemText
+                  className="FilterCheckBox-Name"
+                  primary={value.name ? value.name : value.fullName}
+                />
+                <ListItemSecondaryAction>
+                  <IconButton aria-label="Comments" />
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))
+          : null}
+      </List>
     );
   }
 }
 
-export default FilterCheckbox;
+FilterCheckbox.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(FilterCheckbox);

@@ -15,20 +15,26 @@ class Shop extends Component {
   handleFilters = () => {};
 
   render() {
+    let book = this.props.book;
     return (
       <div>
         <Top title="Products" />
 
         <div className="container">
           <div className="shop_wrapper">
-            <div classname="left">left</div>
+            <div className="left">
+              <FilterCheckbox
+                title="Genres"
+                list={book.genres}
+                handleFilters={filters => this.handleFilters(filters, "genre")}
+              />
 
-            <FilterCheckbox
-              initialState={true}
-              title="Genres"
-              list={this.props.genres}
-              handleFilters={filters => this.handleFilters(filters, "genre")}
-            />
+              <FilterCheckbox
+                title="Authors"
+                list={book.authors}
+                handleFilters={filters => this.handleFilters(filters, "author")}
+              />
+            </div>
 
             <div className="right">right</div>
           </div>
@@ -40,8 +46,7 @@ class Shop extends Component {
 
 const mapStateToProps = state => {
   return {
-    genres: state.genres,
-    authors: state.authors
+    book: state.book
   };
 };
 
