@@ -32,9 +32,14 @@ class FilterCheckbox extends React.Component {
       newChecked.splice(currentIndex, 1);
     }
 
-    this.setState({
-      checked: newChecked
-    });
+    this.setState(
+      {
+        checked: newChecked
+      },
+      () => {
+        this.props.handleFilters(newChecked);
+      }
+    );
   };
 
   render() {
@@ -58,7 +63,7 @@ class FilterCheckbox extends React.Component {
                   disableRipple
                 />
                 <ListItemText
-                  className="FilterCheckBox-Name"
+                  className="FilterCheckBox-Value"
                   primary={value.name ? value.name : value.fullName}
                 />
                 <ListItemSecondaryAction>

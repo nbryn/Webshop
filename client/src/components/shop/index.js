@@ -7,32 +7,52 @@ import { getGenres } from "../../actions/genreActions";
 import { connect } from "react-redux";
 
 class Shop extends Component {
+  state = {
+    grid: "",
+    limit: 6,
+    skip: 0,
+    filters: {
+      genre: [],
+      author: []
+    }
+  };
+
   componentDidMount() {
     this.props.dispatch(getAuthors());
     this.props.dispatch(getGenres());
   }
 
-  handleFilters = () => {};
+  // Apply filters -
+  handleFilters = () => {
+    let newFilters = { ...this.state.filters };
+
+    this.setState({
+      filters: newFilters
+    });
+  };
+
+  // Show results after filter
+  filteredResults = () => {};
 
   render() {
-    let book = this.props.book;
+    let books = this.props.books;
     return (
       <div>
-        <Top title="Products" />
+        <Top title="Books" />
 
         <div className="container">
           <div className="shop_wrapper">
             <div className="left">
               <FilterCheckbox
                 title="Genres"
-                list={book.genres}
-                handleFilters={filters => this.handleFilters(filters, "genre")}
+                list={books.genres}
+                handleFilters={filters => this.handleFilters()}
               />
 
               <FilterCheckbox
                 title="Authors"
-                list={book.authors}
-                handleFilters={filters => this.handleFilters(filters, "author")}
+                list={books.authors}
+                handleFilters={filters => this.handleFilters()}
               />
             </div>
 
@@ -46,7 +66,7 @@ class Shop extends Component {
 
 const mapStateToProps = state => {
   return {
-    book: state.book
+    books: state.books
   };
 };
 

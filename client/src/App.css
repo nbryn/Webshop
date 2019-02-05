@@ -140,7 +140,7 @@ header .logo {
   left: -31px;
 }
 
-.FilterCheckBox-Name {
+.FilterCheckBox-Value {
   position: absolute;
-  left: 50px;
+  left: 45px;
 }
