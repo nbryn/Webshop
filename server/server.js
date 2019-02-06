@@ -169,6 +169,43 @@ app.post("/webshop/book", isAdmin, (request, response) => {
   }
 });
 
+// Get books to show in shop
+app.post("/webshop/book/shop", (request, response) => {
+  const req = request.body;
+
+  let order = req.order ? req.order : "desc";
+  let sortBy = req.sortBy ? req.sortBy : "_id";
+  let max = req.max ? parseInt(req.max) : 25;
+  let skip = parseInt(req.skip);
+  let appliedFilters = {};
+
+  // Check if category is part request sent from client
+  for (let key in req.filters) {
+    if (req.filters[key].length > 0) {
+      appliedFilters[key] = req.filters[key];
+    }
+  }
+
+  try {
+    Book.find(appliedFilters)
+      .populate("author")
+      .populate("genre")
+      .sort([[sortBy, order]])
+      .skip(skip)
+      .limit(max)
+      .exec((error, books) => {
+        return response.status(200).json({
+          size: books.length,
+          books: books
+        });
+      });
+  } catch (error) {
+    return response.status(400).json({
+      completed: false
+    });
+  }
+});
+
 // Get Book(s) by id - e.g. /webshop/book_by_id?id=xxx&type=array
 app.get("/webshop/book_by_id", (request, response) => {
   let items, ids;
@@ -180,7 +217,7 @@ app.get("/webshop/book_by_id", (request, response) => {
       return mongoose.Types.ObjectId(id);
     });
   }
-  // Get Book(s) with specified id from Database and populate author & genre
+  // Get Book(s) with the specified id from Database and populate author & genre
   try {
     Book.find({ _id: { $in: items } })
       .populate("author")

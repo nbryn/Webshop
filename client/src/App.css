@@ -114,24 +114,25 @@ header .logo {
   margin-top: 10px;
 }
 
-.top_shop {
+.shop-header {
   margin-top: -100px;
   border-bottom: 1px solid #999592;
   padding: 20px 0px;
   text-transform: uppercase;
 }
 
-.shop_wrapper {
+.shop-wrapper {
   display: flex;
 }
 
-.shop_wrapper .left {
+.shop-wrapper .left {
   position: absolute;
   flex-grow: 1;
   left: 0px;
+  border-right: 1px solid #999592;
 }
 
-.shop_wrapper .right {
+.shop-wrapper .right {
   width: 800px;
 }
 
@@ -140,7 +141,7 @@ header .logo {
   left: -31px;
 }
 
-.FilterCheckBox-Value {
+.filter-check-box-value {
   position: absolute;
   left: 45px;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Top from "./Top";
+import ShopHeader from "./ShopHeader";
 import FilterCheckbox from "./FilterCheckbox";
-
+import { getBooks } from "../../actions/bookActions";
 import { getAuthors } from "../../actions/authorActions";
 import { getGenres } from "../../actions/genreActions";
 import { connect } from "react-redux";
@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 class Shop extends Component {
   state = {
     grid: "",
-    limit: 6,
+    max: 6,
     skip: 0,
     filters: {
       genre: [],
@@ -20,39 +20,54 @@ class Shop extends Component {
   componentDidMount() {
     this.props.dispatch(getAuthors());
     this.props.dispatch(getGenres());
+
+    this.props.dispatch(
+      getBooks(this.state.max, this.state.skip, this.state.filters)
+    );
   }
 
   // Apply filters -
-  handleFilters = () => {
+  handleFilters = (category, filters) => {
     let newFilters = { ...this.state.filters };
+    newFilters[category] = filters;
 
+    this.showFilteredData(newFilters);
     this.setState({
       filters: newFilters
     });
   };
 
   // Show results after filter
-  filteredResults = () => {};
+  showFilteredData = filters => {
+    this.props.dispatch(getBooks(this.state.max, 0, filters)).then(() => {
+      this.setState({
+        skip: 0
+      });
+    });
+  };
 
   render() {
-    let books = this.props.books;
+    let authors = this.props.authors.authorData;
+    let genres = this.props.genres.genreData;
     return (
       <div>
-        <Top title="Books" />
+        <ShopHeader title="Books" />
 
         <div className="container">
-          <div className="shop_wrapper">
+          <div className="shop-wrapper">
             <div className="left">
               <FilterCheckbox
                 title="Genres"
-                list={books.genres}
-                handleFilters={filters => this.handleFilters()}
+                list={authors}
+                handleFilters={filters => this.handleFilters("genres", filters)}
               />
 
               <FilterCheckbox
                 title="Authors"
-                list={books.authors}
-                handleFilters={filters => this.handleFilters()}
+                list={genres}
+                handleFilters={filters =>
+                  this.handleFilters("authors", filters)
+                }
               />
             </div>
 
@@ -66,7 +81,8 @@ class Shop extends Component {
 
 const mapStateToProps = state => {
   return {
-    books: state.books
+    authors: state.authors,
+    genres: state.genres
   };
 };
 

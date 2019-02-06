@@ -63,7 +63,7 @@ class FilterCheckbox extends React.Component {
                   disableRipple
                 />
                 <ListItemText
-                  className="FilterCheckBox-Value"
+                  className="filter-check-box-value"
                   primary={value.name ? value.name : value.fullName}
                 />
                 <ListItemSecondaryAction>

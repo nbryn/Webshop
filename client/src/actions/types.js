@@ -7,3 +7,4 @@ export const AUTH_USER = "AUTH_USER";
 //Books
 export const GET_AUTHORS = "GET_AUTHORS";
 export const GET_GENRES = "GET_GENRES";
+export const GET_BOOKS = "GET_BOOKS";

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-const Top = props => {
+const ShopHeader = props => {
   return (
-    <div className="top_shop">
+    <div className="shop-header">
       <div className="container" />
       {props.title}
     </div>
   );
 };
 
-export default Top;
+export default ShopHeader;
