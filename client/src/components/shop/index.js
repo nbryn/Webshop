@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ShopHeader from "./ShopHeader";
 import FilterCheckbox from "./FilterCheckbox";
+import ShowCards from "./ShowCards";
 import { getBooks } from "../../actions/bookActions";
 import { getAuthors } from "../../actions/authorActions";
 import { getGenres } from "../../actions/genreActions";
@@ -49,6 +50,8 @@ class Shop extends Component {
   render() {
     let authors = this.props.authors.authorData;
     let genres = this.props.genres.genreData;
+    let books = this.props.books;
+
     return (
       <div>
         <ShopHeader title="Books" />
@@ -71,7 +74,20 @@ class Shop extends Component {
               />
             </div>
 
-            <div className="right">right</div>
+            <div className="right">
+              <div className="shop-options">
+                <div className="shop-grids clear" />
+              </div>
+              <div>
+                <ShowCards
+                  books={books.bookData}
+                  size={books.size}
+                  grid={this.state.grid}
+                  max={this.state.limit}
+                  getMoreCards={() => console.log("Hej")}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -82,7 +98,8 @@ class Shop extends Component {
 const mapStateToProps = state => {
   return {
     authors: state.authors,
-    genres: state.genres
+    genres: state.genres,
+    books: state.books
   };
 };
 
