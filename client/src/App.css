@@ -52,6 +52,16 @@ header .logo {
   width: 350px;
 }
 
+.card.shop {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 500px;
+  height: 500px;
+  left: -5px;
+  top: -21px;
+  border: transparent;
+}
+
 .children {
   position: absolute;
   display: flex;
@@ -133,7 +143,10 @@ header .logo {
 }
 
 .shop-wrapper .right {
-  width: 800px;
+  position: absolute;
+  width: 1000px;
+  left: 100px;
+  top: 50px;
 }
 
 .MuiListItem-container-59 {
@@ -162,12 +175,6 @@ header .logo {
   margin-bottom: 50px;
 }
 
-.card-shop .card-item-wrapper {
-  float: left;
-  width: 33.3%;
-  margin-bottom: 20px;
-}
-
 .nothing-found {
   font-size: 40px;
   color: #999592;
@@ -175,69 +182,92 @@ header .logo {
   padding-top: 40px;
 }
 
-.card_item_wrapper {
+.card.image {
   display: flex;
-  width: 75%;
-  padding: 0 20px;
-  box-sizing: border-box;
+  width: 150px;
+  height: 110px;
+  top: -75px;
+  left: 25px;
+}
+
+.card.info {
+  position: absolute;
+  width: 100px;
+  left: 75px;
+  height: 120px;
+  top: 120px;
+  border: transparent;
+}
+
+.card.shop {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 500px;
+  height: 500px;
+  left: -5px;
+  top: -21px;
+  border: transparent;
+}
+
+.card-item-wrapper {
   position: relative;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 235px;
+  left: 0px;
+  padding: 80px 20px;
 }
 
-.image {
-  display: flex;
-  width: 240px;
-  height: 240px;
-  background-position: center !important;
-  background-size: cover !important;
-  border: 1px solid #f0f0f0;
-}
-
-.card_item_wrapper .tags {
+.card-item-wrapper .tags {
   position: relative;
   border-bottom: 1px solid #f0f0f0;
 }
 
-.card_item_wrapper .tags .genre,
-.card_item_wrapper .tags .author,
-.card_item_wrapper .tags .title {
+.card-item-wrapper .tags .author,
+.card-item-wrapper .tags .title,
+.card-item-wrapper .tags .price {
   text-align: center;
-  margin: 5px;
+  margin: 2px;
 }
 
-.card_item_wrapper .tags .brand {
-  font-size: 17px;
+.card-item-wrapper .tags .author {
+  font-size: 14px;
   font-weight: 700;
   color: #2196f3;
 }
 
-.card_item_wrapper .tags .name {
-  font-size: 21px;
-  font-weight: 700;
+.card-item-wrapper .tags .title {
+  font-weight: 350;
+  font-size: 19px;
 }
 
-.card_item_wrapper .tags .price {
+.card-item-wrapper .tags .price {
   font-weight: 300;
-  font-size: 21px;
+  font-size: 14px;
 }
 
-.card_item_wrapper .actions {
+.btn.btn-secondary {
+  background-color: #007bff;
+  height: 30px;
+}
+
+.card-item-wrapper .actions {
   display: flex;
   padding: 15px 0 10px 0;
 }
 
-.card_item_wrapper .actions .button_wrapp:nth-child(1) {
+.card-item-wrapper .actions .button_wrapp:nth-child(1) {
   flex-grow: 1;
   padding-right: 10px;
 }
 
-.card_item_wrapper.grid_bars {
+.card-item-wrapper.grid_bars {
   float: none;
   width: 100%;
   display: flex;
 }
 
-.card_item_wrapper.grid_bars .image {
+.card-item-wrapper.grid_bars .image {
   width: 420px;
   height: 211px;
   border: none;

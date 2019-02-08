@@ -60,17 +60,17 @@ class Shop extends Component {
           <div className="shop-wrapper">
             <div className="left">
               <FilterCheckbox
-                title="Genres"
-                list={authors}
-                handleFilters={filters => this.handleFilters("genres", filters)}
-              />
-
-              <FilterCheckbox
                 title="Authors"
-                list={genres}
+                list={authors}
                 handleFilters={filters =>
                   this.handleFilters("authors", filters)
                 }
+              />
+
+              <FilterCheckbox
+                title="Genres"
+                list={genres}
+                handleFilters={filters => this.handleFilters("genres", filters)}
               />
             </div>
 

@@ -13,18 +13,17 @@ class Card extends Component {
   render() {
     const props = this.props;
     return (
-      <div className={`card_item_wrapper ${props.grid}`}>
+      <div className={`card-item-wrapper ${props.grid}`}>
         <div
-          className="image"
+          className="card image"
           style={{
             background: `url(${this.showCardImage(props.images)}) no-repeat`
           }}
         />
 
-        <div className="action-container">
+        <div className="card info">
           <div className="tags">
-            <div className="author"> </div>
-            <div className="genre">{props.genre.name} </div>
+            <div className="author">{props.author.fullName} </div>
             <div className="title">{props.title}</div>
             <div className="price">{props.price}</div>
           </div>
@@ -33,11 +32,13 @@ class Card extends Component {
               <p>{props.description}</p>
             </div>
           ) : null}
-          <div className="actions">
-            <div className="button_wrapp">
-              <button type="button" className="btn btn-secondary" />
-            </div>
-            <div className="button_wrapp" />
+
+          <div className="button view-product">
+            <input
+              className="btn btn-secondary btn-sm"
+              type="button"
+              value="View Product"
+            />
           </div>
         </div>
       </div>

@@ -10,17 +10,13 @@ const ShopCards = props => {
       : null;
 
   return (
-    <div className="card-block-shop">
-      <div>
-        <div>
-          {props.list ? (
-            props.list.length === 0 ? (
-              <div className="nothing-found">Error</div>
-            ) : null
-          ) : null}
-          {loadCards(props.list)}
-        </div>
-      </div>
+    <div className="card shop">
+      {props.list ? (
+        props.list.length === 0 ? (
+          <div className="nothing-found">Error</div>
+        ) : null
+      ) : null}
+      {loadCards(props.list)}
     </div>
   );
 };
