@@ -49,7 +49,7 @@ class NavBar extends Component {
     const notAuthenticated = (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
         <Link className="navbar-brand" to="/">
-          BookShop
+          Home
         </Link>
         <button
           className="navbar-toggler"

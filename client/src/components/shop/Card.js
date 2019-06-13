@@ -25,7 +25,7 @@ class Card extends Component {
           <div className="tags">
             <div className="author">{props.author.fullName} </div>
             <div className="title">{props.title}</div>
-            <div className="price">{props.price}</div>
+            <div className="price">{props.price}$</div>
           </div>
           {props.grid ? (
             <div className="description">

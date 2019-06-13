@@ -126,9 +126,16 @@ header .logo {
 
 .shop-header {
   margin-top: -100px;
-  border-bottom: 1px solid #999592;
+  border-bottom: none;
   padding: 20px 0px;
   text-transform: uppercase;
+}
+
+.shop-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #051827;
 }
 
 .shop-wrapper {
@@ -149,9 +156,20 @@ header .logo {
   top: 50px;
 }
 
-.MuiListItem-container-59 {
+.FilterCheckbox {
+  left: -10px;
+}
+
+.MuiListItemText {
+  position: relative;
+  left: 40px;
+  padding: 0px;
+}
+
+.MuiListItem {
   position: absolute;
-  left: -31px;
+  left: 40px;
+  padding: 0px;
 }
 
 .filter-check-box-value {
