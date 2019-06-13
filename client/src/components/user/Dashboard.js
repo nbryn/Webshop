@@ -9,23 +9,18 @@ class Dashboard extends Component {
       <UserLayout>
         <div>
           <div className="card">
-            <h3>Account Information</h3>
+            <h4>Account Information</h4>
             <div>
-              <span>{user.data.fullName} </span>
+              <span>Name: {user.data.fullName} </span>
               <br />
-              <span>{user.data.email}</span>
+              <span>Email: {user.data.email}</span>
             </div>
-            <button type="button" className="btn btn-info">
-              <Link to="/user/user_profile" color="primary">
-                Edit Info
-              </Link>
-            </button>
           </div>
-
+          <br />
+          <br />
           <div className="card">
-            <h2>Orders</h2>
+            <h4>Order History</h4>
             <br />
-            <h5>History</h5>
           </div>
         </div>
       </UserLayout>

@@ -43,7 +43,7 @@ class Slides extends Component {
                   <div className="tag low_title">{slide.line2}</div>
                   <button type="button" className="btn btn-info">
                     <Link to="/shop" color="primary">
-                      Shop!
+                      Go To Shop!
                     </Link>
                   </button>
                 </div>

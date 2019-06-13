@@ -13,8 +13,11 @@ class NavBar extends Component {
   render() {
     const isAuthenticated = (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
-        <Link className="navbar-brand" to="/user/dashboard">
+        <Link className="navbar-brand" to="/">
           Home
+        </Link>
+        <Link className="navbar-brand" to="/user/dashboard">
+          Account
         </Link>
         <button
           class="navbar-toggler"
@@ -29,12 +32,9 @@ class NavBar extends Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto" />
-          <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >
-            Books
-          </button>
+          <Link className="navbar-brand" to="/shop">
+            Cart
+          </Link>
           <a
             className="navbar-brand"
             href="/"
