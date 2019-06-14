@@ -4,9 +4,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className="app-footer">
-        <div>
-          <h5> BookShop </h5>
-        </div>
+        <h5 className="text"> BookShop </h5>
       </footer>
     );
   }

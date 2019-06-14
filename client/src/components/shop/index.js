@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ShopHeader from "./ShopHeader";
-import FilterCheckbox from "./FilterCheckbox";
 import ShowCards from "./ShowCards";
 import { getBooks } from "../../actions/bookActions";
 import { getAuthors } from "../../actions/authorActions";
@@ -26,26 +25,6 @@ class Shop extends Component {
       getBooks(this.state.max, this.state.skip, this.state.filters)
     );
   }
-
-  // Apply filters -
-  handleFilters = (category, filters) => {
-    let newFilters = { ...this.state.filters };
-    newFilters[category] = filters;
-
-    this.showFilteredData(newFilters);
-    this.setState({
-      filters: newFilters
-    });
-  };
-
-  // Show results after filter
-  showFilteredData = filters => {
-    this.props.dispatch(getBooks(this.state.max, 0, filters)).then(() => {
-      this.setState({
-        skip: 0
-      });
-    });
-  };
 
   render() {
     let authors = this.props.authors.authorData;

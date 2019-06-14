@@ -34,18 +34,20 @@ header .logo {
   left: -30px;
 }
 
-
-.nav>ul>a:focus, .nav>li>a:hover {
+.nav > ul > a:focus,
+.nav > li > a:hover {
   text-decoration: none;
   background-color: transparent !important;
 }
 
 .app-footer {
   height: 100px;
-  text-align: center;
   background-color: #1f35fa !important;
-  padding: -10px;
-  padding-top: -10px;
+  margin-bottom: -50px;
+}
+
+.footer-text {
+  left: 100px;
 }
 
 .card {
