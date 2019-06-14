@@ -1,4 +1,4 @@
-import { GET_GENRES } from "./types";
+import { GET_GENRES } from "./ActionTypes";
 import axios from "axios";
 
 export const getGenres = () => async dispatch => {

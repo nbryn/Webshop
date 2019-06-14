@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import ShopHeader from "./ShopHeader";
 import ShowCards from "./ShowCards";
-import { getBooks } from "../../actions/bookActions";
-import { getAuthors } from "../../actions/authorActions";
-import { getGenres } from "../../actions/genreActions";
+import { getBooks } from "../../actions/BookActions";
+import { getAuthors } from "../../actions/AuthorActions";
+import { getGenres } from "../../actions/GenreActions";
 import { connect } from "react-redux";
 
 class Shop extends Component {

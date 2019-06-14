@@ -1,4 +1,4 @@
-import { GET_AUTHORS } from "./types";
+import { GET_AUTHORS } from "./ActionTypes";
 import axios from "axios";
 
 export const getAuthors = () => async dispatch => {

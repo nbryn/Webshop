@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NEW_USER, SET_USER, AUTH_USER } from "./types";
+import { NEW_USER, SET_USER, AUTH_USER } from "./ActionTypes";
 
 // Try to persist user -> Dispatch NEW_User/GET_ERRORS action
 export const newUser = (user, history) => async dispatch => {

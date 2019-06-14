@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import user from "./userReducer";
-import authors from "./authorReducer";
-import genres from "./genreReducer";
-import books from "./bookReducer";
+import user from "./UserReducer";
+import authors from "./AuthorReducer";
+import genres from "./GenreReducer";
+import books from "./BookReducer";
 
 const rootReducer = combineReducers({
   user,

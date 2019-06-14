@@ -10,7 +10,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { login } from "../../actions/userActions";
+import { login } from "../../actions/UserActions";
 
 const styles = theme => ({
   main: {

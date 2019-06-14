@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Card extends Component {
-  showCardImage(images) {
+  renderCardImage(images) {
     if (images.length > 0) {
       return images[0].url;
     } else {
@@ -17,7 +18,7 @@ class Card extends Component {
         <div
           className="card image"
           style={{
-            background: `url(${this.showCardImage(props.images)}) no-repeat`
+            background: `url(${this.renderCardImage(props.images)}) no-repeat`
           }}
         />
 
@@ -34,11 +35,13 @@ class Card extends Component {
           ) : null}
 
           <div className="button view-product">
-            <input
-              className="btn btn-secondary btn-sm"
-              type="button"
-              value="View Product"
-            />
+            <Link to={`/book_details/${props._id}`}>
+              <input
+                className="btn btn-secondary btn-sm"
+                type="button"
+                value="INFO"
+              />
+            </Link>
           </div>
         </div>
       </div>

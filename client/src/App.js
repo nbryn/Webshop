@@ -12,6 +12,7 @@ import SignIn from "./components/user/SignIn";
 import SignUp from "./components/user/SignUp";
 import Dashboard from "./components/user/Dashboard";
 import IsAuth from "./components/security/IsAuth";
+import BookDetails from "./components/book/index";
 
 class App extends Component {
   render() {
@@ -20,6 +21,11 @@ class App extends Component {
         <Router>
           <Layout>
             <Switch>
+              <Route
+                exact
+                path="/book_details/:id"
+                component={IsAuth(BookDetails, false)}
+              />
               <Route exact path="/signin" component={IsAuth(SignIn, false)} />
               <Route exact path="/signup" component={IsAuth(SignUp, false)} />
               <Route exact path="/" component={IsAuth(Home, false)} />

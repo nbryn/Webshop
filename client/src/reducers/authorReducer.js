@@ -1,4 +1,4 @@
-import { GET_AUTHORS } from "../actions/types";
+import { GET_AUTHORS } from "../actions/ActionTypes";
 
 // Update store when author action is dispatched
 export default function(state = {}, action) {

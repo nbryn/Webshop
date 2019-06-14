@@ -1,4 +1,4 @@
-import { GET_GENRES } from "../actions/types";
+import { GET_GENRES } from "../actions/ActionTypes";
 
 // Update store when genre action is dispatched
 export default function(state = {}, action) {

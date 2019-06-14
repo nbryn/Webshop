@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { connect } from "react-redux";
-import { authentication } from "../../actions/userActions";
+import { authentication } from "../../actions/UserActions";
 
 // Check users access level
 export default function(Comp, showPage, admin = null) {

@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
-import { newUser } from "../../actions/userActions";
+import { newUser } from "../../actions/UserActions";
 
 const styles = theme => ({
   main: {

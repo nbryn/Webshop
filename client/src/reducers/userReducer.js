@@ -1,4 +1,4 @@
-import { NEW_USER, SET_USER, AUTH_USER } from "../actions/types";
+import { NEW_USER, SET_USER, AUTH_USER } from "../actions/ActionTypes";
 
 // Update store when user action is dispatched
 export default function(state = {}, action) {
