@@ -47,6 +47,7 @@ export function getBookDetails(id) {
   };
 }
 
+//Clear details so that we dont have 2x details in state
 export function clearBookDetails() {
   return {
     type: CLEAR_BOOK_DETAILS,

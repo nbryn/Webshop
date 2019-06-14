@@ -67,6 +67,53 @@ header .logo {
   border: transparent;
 }
 
+.book_detail_wrapper {
+  display: flex;
+  margin-bottom: 140px;
+}
+
+.book_detail_wrapper .right {
+  flex-grow: 1;
+  min-height: 800px;
+}
+
+.book_detail_wrapper p {
+  font-size: 17px;
+  font-family: Arial, Helvetica;
+  font-weight: lighter;
+}
+
+.book_detail_wrapper .product_tags {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.book_detail_wrapper .product_tags .tag {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.book_detail_wrapper .product_tags .tag svg {
+  font-size: 43px;
+  color: #e4e4e4;
+  width: 50px;
+}
+
+.book_detail_wrapper .product_tags .tag .tag_text {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #999592;
+  padding-left: 20px;
+}
+
+.book_detail_wrapper .product_actions .price {
+  font-size: 40px;
+  font-weight: 300;
+}
+.book_detail_wrapper .product_actions .cart {
+  width: 149px;
+}
+
 .children {
   position: absolute;
   display: flex;
