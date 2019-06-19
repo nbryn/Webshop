@@ -4,11 +4,11 @@ import { NEW_USER, SET_USER, AUTH_USER } from "../actions/ActionTypes";
 export default function(state = {}, action) {
   switch (action.type) {
     case NEW_USER:
-      return { ...state, signUp: action.payload };
+      return Object.assign({ ...state, signUp: action.payload });
     case SET_USER:
-      return { ...state, login: action.payload };
+      return Object.assign({ ...state, login: action.payload });
     case AUTH_USER:
-      return { ...state, userData: action.payload };
+      return Object.assign({ ...state, userData: action.payload });
     default:
       return state;
   }

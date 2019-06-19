@@ -83,35 +83,75 @@ header .logo {
   font-weight: lighter;
 }
 
-.book_detail_wrapper .product_tags {
+.book_detail_wrapper .book_tags {
   padding-bottom: 10px;
   border-bottom: 1px solid #d3d3d3;
 }
 
-.book_detail_wrapper .product_tags .tag {
+.book_detail_wrapper .book_tags .tag {
   display: flex;
   margin-bottom: 20px;
 }
 
-.book_detail_wrapper .product_tags .tag svg {
+.book_detail_wrapper .book_tags .tag svg {
   font-size: 43px;
   color: #e4e4e4;
   width: 50px;
 }
 
-.book_detail_wrapper .product_tags .tag .tag_text {
+.book_detail_wrapper .book_tags .tag .tag_text {
   font-size: 14px;
   text-transform: uppercase;
   color: #999592;
   padding-left: 20px;
 }
 
-.book_detail_wrapper .product_actions .price {
+.book_detail_wrapper .book_actions .price {
   font-size: 40px;
   font-weight: 300;
 }
-.book_detail_wrapper .product_actions .cart {
+.book_detail_wrapper .book_actions .cart {
   width: 149px;
+}
+
+.book_detail_wrapper .book_info .item {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #838383;
+}
+
+.book_detail_wrapper .book_image_container {
+  margin-top: 30px;
+  padding-right: 70px;
+}
+
+.book_detail_wrapper .main_pic {
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.book_detail_wrapper .main_pic div {
+  width: 100%;
+  height: 446px;
+  width: 446px;
+  border: 1px solid #d9d9d9;
+  background-size: contain !important;
+  background-position: center center !important;
+}
+
+.book_detail_wrapper .main_thumbs {
+  margin-top: 10px;
+}
+
+.book_detail_wrapper .main_thumbs .thumb {
+  cursor: pointer;
+  height: 200px;
+  width: 50%;
+  background-size: cover !important;
+  background-position: bottom center !important;
+  border: 1px solid #e8e8e8;
+  box-sizing: border-box;
+  float: left;
 }
 
 .children {

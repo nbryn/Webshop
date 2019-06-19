@@ -8,21 +8,22 @@ import {
 export default function(state = {}, action) {
   switch (action.type) {
     case GET_BOOKS:
-      return {
+      // Dont mutate state, create copy with Object.assign
+      return Object.assign({
         ...state,
         bookData: action.payload.books,
         size: action.payload.size
-      };
+      });
     case GET_BOOK_DETAILS:
-      return {
+      return Object.assign({
         ...state,
         bookDetails: action.payload
-      };
+      });
     case CLEAR_BOOK_DETAILS:
-      return {
+      return Object.assign({
         ...state,
         bookDetails: action.payload
-      };
+      });
     default:
       return state;
   }
