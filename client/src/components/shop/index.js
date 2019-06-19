@@ -2,33 +2,22 @@ import React, { Component } from "react";
 import ShopHeader from "./ShopHeader";
 import ShowCards from "./ShowCards";
 import { getBooks } from "../../actions/BookActions";
-import { getAuthors } from "../../actions/AuthorActions";
-import { getGenres } from "../../actions/GenreActions";
 import { connect } from "react-redux";
 
 class Shop extends Component {
   state = {
     grid: "",
     max: 6,
-    skip: 0,
-    filters: {
-      genre: [],
-      author: []
-    }
+    skip: 0
   };
 
   componentDidMount() {
-    this.props.dispatch(getAuthors());
-    this.props.dispatch(getGenres());
-
     this.props.dispatch(
       getBooks(this.state.max, this.state.skip, this.state.filters)
     );
   }
 
   render() {
-    let authors = this.props.authors.authorData;
-    let genres = this.props.genres.genreData;
     let books = this.props.books;
 
     return (
@@ -58,12 +47,13 @@ class Shop extends Component {
   }
 }
 
+// Data from store that this component needs
+// Called everytime the store state changes
 const mapStateToProps = state => {
   return {
-    authors: state.authors,
-    genres: state.genres,
     books: state.books
   };
 };
 
+// Connecting component to the Redux store
 export default connect(mapStateToProps)(Shop);
