@@ -4,7 +4,7 @@ import { NEW_USER, SET_USER, AUTH_USER, ADD_TO_CART } from "./ActionTypes";
 // Try to persist user -> Dispatch NEW_User/GET_ERRORS action
 export const newUser = (user, history) => async dispatch => {
   try {
-    let response = await axios.post(
+    const response = await axios.post(
       "http://localhost:3001/webshop/users/signup",
       user
     );
@@ -22,7 +22,7 @@ export const newUser = (user, history) => async dispatch => {
 // Try to log user in -> Dispatch SET_USER/GET_ERRORS action
 export const login = (signInRequest, history) => async dispatch => {
   try {
-    let response = await axios.post(
+    const response = await axios.post(
       "http://localhost:3001/webshop/users/signin",
       signInRequest
     );
@@ -45,9 +45,9 @@ export const login = (signInRequest, history) => async dispatch => {
 export const authentication = () => async dispatch => {
   try {
     // Get token from local storage
-    let jwtToken = localStorage.getItem("jwtToken");
-    let request = { token: jwtToken };
-    let response = await axios.post(
+    const jwtToken = localStorage.getItem("jwtToken");
+    const request = { token: jwtToken };
+    const response = await axios.post(
       "http://localhost:3001/webshop/users/auth",
       request
     );
@@ -72,8 +72,12 @@ export const signOut = () => dispatch => {
 
 // Forward ID for item added to cart to server for persistence
 export const addToCart = _id => async dispatch => {
+  const request = axios
+    .post(`http://localhost:3001/webshop/users/addToCart?bookId=${_id}`)
+    .then(response => response.data);
+
   return {
     type: ADD_TO_CART,
-    payload: ""
+    payload: request
   };
 };

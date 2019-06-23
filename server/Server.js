@@ -117,22 +117,42 @@ app.post("/webshop/users/signin", (request, response) => {
 });
 
 // Add book to cart
-app.post("webshop/users/addToCart", auth, (request, response) => {
-
-  User.findOne({_id: request.user._id}, (error, doc) => {
+app.post("webshop/users/addToCart", (request, response) => {
+  User.findOne({ _id: request.user._id }, (error, doc) => {
     // Is the book already added to cart?
     let alreadyInCart = false;
 
-    // Loop through book array to check if book is in cart
-    doc.cart.forEach((book) => {
-      if(book._id == request.query.bookId) {
-        
+    // Loop through cart to check if book is in cart
+    doc.cart.forEach(book => {
+      if (book.id == request.query.bookId) {
+        alreadyInCart = true;
       }
-    })
-  }
-  
-  })
-})
+    });
+    if (alreadyInCart) {
+    } else {
+      // Add book to cart if book is not present in cart
+      User.findOneAndUpdate(
+        { _id: request.user._id },
+        {
+          $push: {
+            cart: {
+              // Persist id, quantity and date
+              id: moongose.Types.ObjectId(request.query.bookId),
+              quantity: 1,
+              date: Data.now()
+            }
+          }
+        },
+        { new: true },
+        (error, doc) => {
+          if (error) return response.json({ succes: false, error });
+          // Return the book added to cart
+          response.status(200).json(doc.cart);
+        }
+      );
+    }
+  });
+});
 
 // ------------------------------- AUTHOR ------------------------------ //
 

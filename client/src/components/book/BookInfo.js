@@ -41,7 +41,7 @@ const BookInfo = props => {
         className="btn btn-primary"
         onClick={() => {
           if (localStorage.getItem("jwtToken")) {
-            this.props.dispatch(addToCart(props._id));
+            this.props.dispatch(addToCart(bookDetails._id));
           } else {
             console.log("You need to login");
           }

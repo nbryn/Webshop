@@ -41,7 +41,7 @@ const userSchema = new Schema({
     default: []
   },
 
-  basket: {
+  cart: {
     type: Array,
     default: []
   }
