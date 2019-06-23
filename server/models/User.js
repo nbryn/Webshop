@@ -5,7 +5,7 @@ const SALT = 12;
 require("dotenv").config();
 
 // User Schema
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   role: {

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // Book Schema
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const bookSchema = new Schema(
   {

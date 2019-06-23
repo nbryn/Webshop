@@ -1,4 +1,5 @@
 import React from "react";
+import { addToCart } from "../../actions/UserActions";
 
 const BookInfo = props => {
   const showBookTags = bookDetails => (
@@ -38,8 +39,12 @@ const BookInfo = props => {
       <button
         type="button"
         className="btn btn-primary"
-        addToCart={() => {
-          console.log("Add to cart");
+        onClick={() => {
+          if (localStorage.getItem("jwtToken")) {
+            this.props.dispatch(addToCart(props._id));
+          } else {
+            console.log("You need to login");
+          }
         }}
       >
         Add To Cart

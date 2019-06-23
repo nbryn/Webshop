@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // Author Schema
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const authorSchema = new Schema({
   fullName: {

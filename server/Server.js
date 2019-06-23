@@ -34,7 +34,7 @@ app.use(
   })
 );
 
-// ------------------------------- USERS ------------------------------ //
+// ------------------------------- USER ------------------------------ //
 
 // Authentication => true/false => next => request, response
 app.post("/webshop/users/auth", (request, response) => {
@@ -116,7 +116,25 @@ app.post("/webshop/users/signin", (request, response) => {
   });
 });
 
-// ------------------------------- AUTHORS ------------------------------ //
+// Add book to cart
+app.post("webshop/users/addToCart", auth, (request, response) => {
+
+  User.findOne({_id: request.user._id}, (error, doc) => {
+    // Is the book already added to cart?
+    let alreadyInCart = false;
+
+    // Loop through book array to check if book is in cart
+    doc.cart.forEach((book) => {
+      if(book._id == request.query.bookId) {
+        
+      }
+    })
+  }
+  
+  })
+})
+
+// ------------------------------- AUTHOR ------------------------------ //
 
 // Persist Author
 app.post("/webshop/book/author", isAdmin, (request, response) => {
@@ -149,7 +167,7 @@ app.get("/webshop/book/authors", (request, response) => {
   }
 });
 
-// ------------------------------- BOOKS ------------------------------ //
+// ------------------------------- BOOK ------------------------------ //
 
 // Persist Book
 app.post("/webshop/book", isAdmin, (request, response) => {

@@ -30,7 +30,6 @@ class BookDetails extends Component {
               <div className="left">images</div>
               <div className="right">
                 <BookInfo
-                  addToCart={id => this.addToCartHandler(id)}
                   //Pass book details to child component
                   bookInfo={this.props.books.bookDetails}
                 />

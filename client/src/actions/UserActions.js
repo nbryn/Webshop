@@ -70,7 +70,8 @@ export const signOut = () => dispatch => {
   });
 };
 
-export const addToCart = id => async dispatch => {
+// Forward ID for item added to cart to server for persistence
+export const addToCart = _id => async dispatch => {
   return {
     type: ADD_TO_CART,
     payload: ""
