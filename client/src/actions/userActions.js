@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NEW_USER, SET_USER, AUTH_USER } from "./ActionTypes";
+import { NEW_USER, SET_USER, AUTH_USER, ADD_TO_CART } from "./ActionTypes";
 
 // Try to persist user -> Dispatch NEW_User/GET_ERRORS action
 export const newUser = (user, history) => async dispatch => {
@@ -68,4 +68,11 @@ export const signOut = () => dispatch => {
     type: SET_USER,
     payload: {}
   });
+};
+
+export const addToCart = id => async dispatch => {
+  return {
+    type: ADD_TO_CART,
+    payload: ""
+  };
 };

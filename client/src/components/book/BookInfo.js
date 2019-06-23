@@ -15,7 +15,7 @@ const BookInfo = props => {
       ) : (
         <div className="tag">
           <div className="tag_text">
-            <div>In stock: Yes</div>
+            <div>In stock: No</div>
           </div>
         </div>
       )}

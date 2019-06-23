@@ -5,10 +5,11 @@ import {
 } from "../actions/ActionTypes";
 
 // Update store when bookaction is dispatched
+// Initial state is empty
 export default function(state = {}, action) {
+  // Does not mutate state, creates copy with Object.assign
   switch (action.type) {
     case GET_BOOKS:
-      // Dont mutate state, create copy with Object.assign
       return Object.assign({
         ...state,
         bookData: action.payload.books,

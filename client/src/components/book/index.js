@@ -7,11 +7,16 @@ import BookInfo from "./BookInfo";
 class BookDetails extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
-    this.props.dispatch(getBookDetails(id));
+    this.props.dispatch(getBookDetails(id)).then(response => {
+      //If book ID does not exist -> Push user to home
+      if (!this.props.books.bookDetails) {
+        this.props.history.push("/");
+      }
+    });
   }
 
   componentWillUnmount() {
-    //Clear Details when unmounting
+    //Clear Details when unmounting -> So user can view info of other books
     this.props.dispatch(clearBookDetails());
   }
 

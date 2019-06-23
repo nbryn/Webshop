@@ -3,6 +3,7 @@ export const SET_USER = "SET_USER";
 export const NEW_USER = "NEW_USER";
 export const LOGIN = "LOGIN";
 export const AUTH_USER = "AUTH_USER";
+export const ADD_TO_CART = "ADD_TO_CART";
 
 //Books
 export const GET_AUTHORS = "GET_AUTHORS";
