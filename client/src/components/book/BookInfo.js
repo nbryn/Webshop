@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 class BookInfo extends Component {
   render() {
     const bookDetails = this.props.bookInfo;
+    const userId = this.props.user._id;
     return (
       <div className="container">
         <h4>{bookDetails.title} </h4>
@@ -44,7 +45,7 @@ class BookInfo extends Component {
             className="btn btn-primary"
             onClick={() => {
               if (localStorage.getItem("jwtToken")) {
-                this.props.dispatch(addToCart(bookDetails._id));
+                this.props.dispatch(addToCart(bookDetails._id, userId));
               } else {
                 console.log("You need to login");
               }

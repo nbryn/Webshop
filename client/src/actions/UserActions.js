@@ -71,13 +71,19 @@ export const signOut = () => dispatch => {
 };
 
 // Forward ID for item added to cart to server for persistence
-export const addToCart = _id => async dispatch => {
-  const request = axios
-    .post(`http://localhost:3001/webshop/users/addToCart?bookId=${_id}`)
-    .then(response => response.data);
+export const addToCart = (bookId, userId) => {
+  try {
+    const request = axios
+      .post(
+        `http://localhost:3001/webshop/users/addtocart?bookId=${bookId}&userId=${userId}`
+      )
+      .then(response => response.data);
 
-  return {
-    type: ADD_TO_CART,
-    payload: request
-  };
+    return {
+      type: ADD_TO_CART,
+      payload: request
+    };
+  } catch (error) {
+    console.log(error);
+  }
 };

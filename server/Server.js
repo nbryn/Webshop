@@ -117,8 +117,8 @@ app.post("/webshop/users/signin", (request, response) => {
 });
 
 // Add book to cart
-app.post("webshop/users/addToCart", (request, response) => {
-  User.findOne({ _id: request.user._id }, (error, doc) => {
+app.post("/webshop/users/addToCart", (request, response) => {
+  User.findById(request.query.userId, (error, doc) => {
     // Is the book already added to cart?
     let alreadyInCart = false;
 
@@ -129,17 +129,33 @@ app.post("webshop/users/addToCart", (request, response) => {
       }
     });
     if (alreadyInCart) {
+      User.findOneAndUpdate(
+        {
+          _id: request.query.userId,
+          "cart.id": mongoose.Types.ObjectId(req.query.bookId)
+        },
+        {
+          $inc: { "cart.$.quantity": 1 }
+        },
+        {
+          new: true
+        },
+        (err, doc) => {
+          if (err) return res.json({ success: false, err });
+          res.status(200).json(doc.cart);
+        }
+      );
     } else {
       // Add book to cart if book is not present in cart
       User.findOneAndUpdate(
-        { _id: request.user._id },
+        { _id: request.query.userIid },
         {
           $push: {
             cart: {
               // Persist id, quantity and date
               id: moongose.Types.ObjectId(request.query.bookId),
               quantity: 1,
-              date: Data.now()
+              date: Date.now()
             }
           }
         },
