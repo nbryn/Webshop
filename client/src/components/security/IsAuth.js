@@ -29,7 +29,7 @@ export default function(Comp, showPage, admin = null) {
     }
 
     render() {
-      //Loader Icon
+      //Loading Icon
       if (this.state.showPage) {
         return (
           <div className="main_loader">
