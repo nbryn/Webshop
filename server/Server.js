@@ -118,6 +118,7 @@ app.post("/webshop/users/signin", (request, response) => {
 
 // Add book to cart
 app.post("/webshop/users/addToCart", (request, response) => {
+  // Find user by Id
   User.findById(request.query.userId, (error, doc) => {
     // Is the book already added to cart?
     let alreadyInCart = false;
@@ -132,28 +133,24 @@ app.post("/webshop/users/addToCart", (request, response) => {
       User.findOneAndUpdate(
         {
           _id: request.query.userId,
-          "cart.id": mongoose.Types.ObjectId(req.query.bookId)
+          "cart.id": mongoose.Types.ObjectId(request.query.bookId)
         },
-        {
-          $inc: { "cart.$.quantity": 1 }
-        },
-        {
-          new: true
-        },
-        (err, doc) => {
-          if (err) return res.json({ success: false, err });
-          res.status(200).json(doc.cart);
+        { $inc: { "cart.$.quantity": 1 } },
+        { new: true },
+        () => {
+          if (error) return res.json({ success: false, error });
+          response.status(200).json(doc.cart);
         }
       );
     } else {
       // Add book to cart if book is not present in cart
       User.findOneAndUpdate(
-        { _id: request.query.userIid },
+        { _id: request.query.userId },
         {
           $push: {
             cart: {
-              // Persist id, quantity and date
-              id: moongose.Types.ObjectId(request.query.bookId),
+              // ID in cart is = book's Object ID
+              id: mongoose.Types.ObjectId(request.query.bookId),
               quantity: 1,
               date: Date.now()
             }
@@ -161,8 +158,7 @@ app.post("/webshop/users/addToCart", (request, response) => {
         },
         { new: true },
         (error, doc) => {
-          if (error) return response.json({ succes: false, error });
-          // Return the book added to cart
+          if (error) return response.json({ success: false, error });
           response.status(200).json(doc.cart);
         }
       );

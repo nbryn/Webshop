@@ -32,11 +32,10 @@ class Shop extends Component {
               </div>
               <div>
                 <ShowCards
-                  books={books.bookData}
+                  books={books.bookArray}
                   size={books.size}
                   grid={this.state.grid}
                   max={this.state.limit}
-                  getMoreCards={() => console.log("Hej")}
                 />
               </div>
             </div>

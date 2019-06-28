@@ -12,7 +12,7 @@ export default function(state = {}, action) {
     case GET_BOOKS:
       return Object.assign({
         ...state,
-        bookData: action.payload.books,
+        bookArray: action.payload.books,
         size: action.payload.size
       });
     case GET_BOOK_DETAILS:

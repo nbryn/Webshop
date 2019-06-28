@@ -41,7 +41,7 @@ export const login = (signInRequest, history) => async dispatch => {
     throw error;
   }
 };
-//Try to authenticate user -> Dispatch AUTH_USER action
+// Try to authenticate user -> Dispatch AUTH_USER action
 export const authentication = () => async dispatch => {
   try {
     // Get token from local storage
@@ -62,6 +62,7 @@ export const authentication = () => async dispatch => {
   }
 };
 
+// Action for user signing out
 export const signOut = () => dispatch => {
   localStorage.removeItem("jwtToken");
   dispatch({
@@ -70,7 +71,7 @@ export const signOut = () => dispatch => {
   });
 };
 
-// Forward ID for item added to cart to server for persistence
+// Forward book ID and User ID to server for persistence in cart
 export const addToCart = (bookId, userId) => {
   try {
     const request = axios

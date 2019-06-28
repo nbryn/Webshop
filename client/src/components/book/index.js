@@ -30,8 +30,9 @@ class BookDetails extends Component {
               <div className="left">images</div>
               <div className="right">
                 <BookInfo
-                  //Pass book details to child component
-                  bookInfo={this.props.books.bookDetails}
+                  //Pass book and user details to child component
+                  bookInfo={this.props.books.bookArray}
+                  userInfo={this.props.user.userData}
                 />
               </div>
             </div>
@@ -46,7 +47,8 @@ class BookDetails extends Component {
 
 const mapStateToProps = state => {
   return {
-    books: state.books
+    books: state.books,
+    user: state.user
   };
 };
 
