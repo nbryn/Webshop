@@ -133,9 +133,12 @@ app.post("/webshop/users/addToCart", (request, response) => {
       User.findOneAndUpdate(
         {
           _id: request.query.userId,
+          // If already in cart -> Find the duplicated book by ID
           "cart.id": mongoose.Types.ObjectId(request.query.bookId)
         },
+        // Increment amount of book already in cart by 1
         { $inc: { "cart.$.quantity": 1 } },
+        // Return all elements of user's cart
         { new: true },
         () => {
           if (error) return res.json({ success: false, error });
@@ -151,6 +154,7 @@ app.post("/webshop/users/addToCart", (request, response) => {
             cart: {
               // ID in cart is = book's Object ID
               id: mongoose.Types.ObjectId(request.query.bookId),
+              // Return all elements of user's cart
               quantity: 1,
               date: Date.now()
             }

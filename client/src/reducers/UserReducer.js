@@ -8,7 +8,7 @@ import {
 // Update store when user action is dispatched
 // Initial state is empty
 export default function(state = {}, action) {
-  // Does not mutate state, creates copy of state with Object.assign
+  // Doesn't mutate state, creates copy of state with Object.assign
   switch (action.type) {
     case NEW_USER:
       return Object.assign({ ...state, signUp: action.payload });
@@ -16,6 +16,7 @@ export default function(state = {}, action) {
       return Object.assign({ ...state, login: action.payload });
     case AUTH_USER:
       return Object.assign({ ...state, userData: action.payload });
+    // Doesn't update all userData only data related to the cart
     case ADD_TO_CART:
       return Object.assign({
         ...state,

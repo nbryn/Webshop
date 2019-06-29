@@ -32,7 +32,7 @@ class NavBar extends Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto" />
-          <Link className="navbar-brand" to="/shop">
+          <Link className="navbar-brand" to="/user/cart">
             Cart
           </Link>
           <a

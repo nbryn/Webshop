@@ -3,8 +3,14 @@ import { addToCart } from "../../actions/UserActions";
 import { connect } from "react-redux";
 
 class BookInfo extends Component {
+  // Handles click on Add To Cart button
+  addToCartHandler(bookId, userId) {
+    // Dispatch user action addToCart
+    this.props.dispatch(addToCart(bookId, userId));
+  }
+
   render() {
-    const bookDetails = this.props.bookInfo;
+    const bookDetails = this.props.bookDetails;
     const userId = this.props.userInfo.data._id;
     return (
       <div className="container">
@@ -46,8 +52,8 @@ class BookInfo extends Component {
             onClick={() => {
               // Chech if user is logged ind
               if (localStorage.getItem("jwtToken")) {
-                // If user is logged in dispatch action -> add book to users cart
-                this.props.dispatch(addToCart(bookDetails._id, userId));
+                // If user is logged in run addToCartHandler function
+                this.addToCartHandler(bookDetails._id, userId);
               } else {
                 console.log("You need to login");
               }

@@ -13,6 +13,7 @@ import SignUp from "./components/user/SignUp";
 import Dashboard from "./components/user/Dashboard";
 import IsAuth from "./components/security/IsAuth";
 import BookDetails from "./components/book/index";
+import Cart from "./components/user/Cart";
 
 class App extends Component {
   render() {
@@ -36,6 +37,7 @@ class App extends Component {
                 path="/user/dashboard"
                 component={IsAuth(Dashboard, true)}
               />
+              <Route exact path="/user/cart" component={IsAuth(Cart, true)} />
             </Switch>
           </Layout>
         </Router>

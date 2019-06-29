@@ -7,7 +7,7 @@ import BookInfo from "./BookInfo";
 class BookDetails extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
-    this.props.dispatch(getBookDetails(id)).then(response => {
+    this.props.dispatch(getBookDetails(id)).then(() => {
       //If book ID does not exist -> Push user to home
       if (!this.props.books.bookDetails) {
         this.props.history.push("/");
@@ -31,7 +31,7 @@ class BookDetails extends Component {
               <div className="right">
                 <BookInfo
                   //Pass book and user details to child component
-                  bookInfo={this.props.books.bookArray}
+                  bookDetails={this.props.books.bookDetails}
                   userInfo={this.props.user.userData}
                 />
               </div>
