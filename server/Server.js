@@ -54,7 +54,7 @@ app.post("/webshop/users/auth", (request, response) => {
         fullName: user.fullName,
         token: user.token,
         history: user.history,
-        basket: user.basket
+        cart: user.cart
       });
     }
   });

@@ -3,6 +3,8 @@ import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
 import promiseMiddleware from "redux-promise";
 
+// Contains the entire state of the application
+
 const initialState = {};
 let Store;
 

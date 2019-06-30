@@ -1,5 +1,11 @@
 import axios from "axios";
-import { NEW_USER, SET_USER, AUTH_USER, ADD_TO_CART } from "./ActionTypes";
+import {
+  NEW_USER,
+  SET_USER,
+  AUTH_USER,
+  ADD_TO_CART,
+  GET_BOOKS_IN_CART
+} from "./ActionTypes";
 
 // Try to persist user -> Dispatch NEW_User/GET_ERRORS action
 export const newUser = (user, history) => async dispatch => {
@@ -87,4 +93,18 @@ export const addToCart = (bookId, userId) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const getDetailedCartInfo = (cartItems, cart) => {
+  const request = axios
+    .get(`http://localhost:3001/webshop/book_by_id?id=${cartItems}&type=array`)
+    .then(response => {
+      console.log(response.data);
+      return response.data;
+    });
+
+  return {
+    type: GET_BOOKS_IN_CART,
+    payload: ""
+  };
 };
