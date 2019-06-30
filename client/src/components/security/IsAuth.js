@@ -3,15 +3,15 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { connect } from "react-redux";
 import { authentication } from "../../actions/UserActions";
 
-// Check users access level
+// This component checks if user is logged in before showing the component in the UI
 export default function(Comp, showPage, admin = null) {
   class IsAuth extends Component {
     state = {
       showPage: true
     };
 
-    // When component is loaded
     componentDidMount() {
+      // Run authentication function when component is loaded
       this.props.dispatch(authentication()).then(response => {
         let user = this.props.user.userData;
 

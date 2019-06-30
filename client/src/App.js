@@ -18,6 +18,7 @@ import Cart from "./components/user/Cart";
 class App extends Component {
   render() {
     return (
+      // Provider makes the store available to any nested components trough the connect() function
       <Provider store={Store}>
         <Router>
           <Layout>
