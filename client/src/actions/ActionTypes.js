@@ -4,7 +4,7 @@ export const NEW_USER = "NEW_USER";
 export const LOGIN = "LOGIN";
 export const AUTH_USER = "AUTH_USER";
 export const ADD_TO_CART = "ADD_TO_CART";
-export const GET_BOOKS_IN_CART = "GET_BOOKS_IN_CART";
+export const GET_QUANTITY_IN_CART = "GET_BOOKS_IN_CART";
 
 //Book
 export const GET_AUTHORS = "GET_AUTHORS";

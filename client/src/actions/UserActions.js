@@ -4,7 +4,7 @@ import {
   SET_USER,
   AUTH_USER,
   ADD_TO_CART,
-  GET_BOOKS_IN_CART
+  GET_QUANTITY_IN_CART
 } from "./ActionTypes";
 
 // Try to persist user -> Dispatch NEW_User/GET_ERRORS action
@@ -86,6 +86,7 @@ export const addToCart = (bookId, userId) => {
       )
       .then(response => response.data);
 
+    // Dispatch happens @ component
     return {
       type: ADD_TO_CART,
       payload: request
@@ -95,16 +96,26 @@ export const addToCart = (bookId, userId) => {
   }
 };
 
-export const getDetailedCartInfo = (cartItems, cart) => {
+// Get quantity of book in users cart for display in the cart component
+export const getQuantityInCart = (cartItems, cart) => {
   const request = axios
     .get(`http://localhost:3001/webshop/book_by_id?id=${cartItems}&type=array`)
     .then(response => {
-      console.log(response.data);
+      cart.forEach(book => {
+        // Loop through each book in cart and add quantity to the response
+        response.data.forEach((book1, index) => {
+          if (book.id === book1._id) {
+            response.data[index].quantity = book.quantity;
+          }
+        });
+      });
+
       return response.data;
     });
 
+  // Dispatch happens @ component
   return {
-    type: GET_BOOKS_IN_CART,
-    payload: ""
+    type: GET_QUANTITY_IN_CART,
+    payload: request
   };
 };

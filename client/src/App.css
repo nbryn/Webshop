@@ -154,6 +154,63 @@ header .logo {
   float: left;
 }
 
+.user_cart_block {
+  display: flex;
+  flex-wrap: wrap;
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ebebeb;
+}
+
+.user_cart_block .item {
+  max-width: 195px;
+  flex-grow: 1;
+}
+
+.user_cart_block .item .image {
+  height: 125px;
+  width: 125px;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+}
+.user_cart_block .item.btn {
+  width: 0px;
+}
+
+.user_cart_block .cart_remove_btn {
+  cursor: pointer;
+  background: #f44336;
+  display: inline-block;
+  padding: 5px 10px;
+  color: #ffffff;
+  margin-top: 50px;
+}
+
+.user_cart_sum {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  text-transform: uppercase;
+  border: 1px solid #e7e7e7;
+  background: #f7f7f7;
+  padding: 20px 30px;
+}
+
+.cart_no_items svg,
+.cart_success svg {
+  font-size: 130px;
+  color: #717171;
+}
+.cart_no_items,
+.cart_success {
+  text-align: center;
+  font-size: 28px;
+  color: #999592;
+}
+
 .children {
   position: absolute;
   display: flex;

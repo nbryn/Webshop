@@ -3,7 +3,7 @@ import {
   SET_USER,
   AUTH_USER,
   ADD_TO_CART,
-  GET_BOOKS_IN_CART
+  GET_QUANTITY_IN_CART
 } from "../actions/ActionTypes";
 
 // Update store when user action is dispatched
@@ -35,7 +35,7 @@ export default function(state = {}, action) {
           cart: action.payload
         }
       });
-    case GET_BOOKS_IN_CART: {
+    case GET_QUANTITY_IN_CART: {
       return Object.assign({
         ...state,
         booksInCart: action.payload

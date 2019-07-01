@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import UserLayout from "./UserLayout";
-import { getDetailedCartInfo } from "../../actions/UserActions";
+import { getQuantityInCart } from "../../actions/UserActions";
+import CartItem from "../user/CartItem";
 
 class Cart extends Component {
   state = {
@@ -12,21 +13,22 @@ class Cart extends Component {
   };
 
   componentDidMount() {
-    const cartItems = [];
-    const user = this.props.user;
+    let cartItems = [];
+    const user = this.props.user.userData;
 
-    // Cart only contains a book's ID -> Need to fetch price etc. from server
+    // Cart only contains information about a book, not quantity in cart -> Need to fetch quantity from server
     // Check if user has a cart
-    if (user.userData.cart) {
+    if (user.data.cart) {
       // Check if cart is empty
-      if (user.userData.cart.length > 0) {
+
+      if (user.data.cart.length > 0) {
         // Push cart items into cartItems array
-        user.userData.cart.forEach(book => {
+        user.data.cart.forEach(book => {
           cartItems.push(book.id);
         });
 
         this.props
-          .dispatch(getDetailedCartInfo(cartItems, user.userData.cart))
+          .dispatch(getQuantityInCart(cartItems, user.data.cart))
           .then(() => {});
       }
     }
@@ -34,7 +36,12 @@ class Cart extends Component {
   render() {
     return (
       <UserLayout>
-        <div>cart</div>
+        <div>
+          <h1>Cart</h1>
+          <div className="user_cart">
+            <CartItem />
+          </div>
+        </div>
       </UserLayout>
     );
   }
