@@ -39,7 +39,7 @@ class Cart extends Component {
         <div>
           <h1>Cart</h1>
           <div className="user_cart">
-            <CartItem />
+            <CartItem user={this.props.user} />
           </div>
         </div>
       </UserLayout>

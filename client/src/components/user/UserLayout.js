@@ -1,6 +1,5 @@
 import React from "react";
 import SideBar from "./SideBar";
-import { connect } from "react-redux";
 
 const UserLayout = props => {
   return (
@@ -11,10 +10,4 @@ const UserLayout = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  };
-};
-
-export default connect(mapStateToProps)(UserLayout);
+export default UserLayout;

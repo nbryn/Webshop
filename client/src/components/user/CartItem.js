@@ -1,26 +1,33 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
-class CartItem extends Component {
-  showBooksInCart = () => {
-    this.props.user.booksInCart
-      ? this.props.user.booksInCart.map(book => {
-          <div className="user_product_block" key={book._id} />;
-        })
-      : null;
+const CartItem = ({ user, removeBook }) => {
+  const renderBookImages = images => {
+    if (images.length > 0) {
+      return images[0].url;
+    } else {
+      return "../../images/notavailable";
+    }
   };
 
-  removeBookFromCart = id => {};
-
-  render() {
-    return <div>{this.showBooksInCart()}</div>;
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    user: state.user
+  const renderBooksInCart = () => {
+    // Check if user has anything in cart
+    if (user.booksInCart) {
+      user.booksInCart.map(book => (
+        <div className="user_cart_block" key={book._id}>
+          <div className="item">
+            <div
+              className="image"
+              style={{
+                background: `url(${renderBookImages(user.images)}) no-repeat`
+              }}
+            />
+          </div>
+        </div>
+      ));
+    } else {
+    }
   };
+
+  return <div>{renderBooksInCart()}</div>;
 };
-
-export default connect(mapStateToProps)(CartItem);
+export default CartItem;
