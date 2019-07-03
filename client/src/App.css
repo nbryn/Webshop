@@ -156,6 +156,7 @@ header .logo {
 
 .user_cart_block {
   display: flex;
+  width: 800px;
   flex-wrap: wrap;
   background: white;
   padding: 10px;
@@ -166,6 +167,7 @@ header .logo {
 .user_cart_block .item {
   max-width: 195px;
   flex-grow: 1;
+  padding: 10px;
 }
 
 .user_cart_block .item .image {

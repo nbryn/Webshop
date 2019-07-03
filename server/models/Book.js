@@ -47,7 +47,7 @@ const bookSchema = new Schema(
       maxlength: 80
     },
 
-    images: {
+    image: {
       type: Array,
       default: []
     },
