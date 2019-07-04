@@ -51,6 +51,9 @@ class NavBar extends Component {
         <Link className="navbar-brand" to="/">
           Home
         </Link>
+        <Link className="navbar-brand" to="/shop">
+          Shop
+        </Link>
         <button
           className="navbar-toggler"
           type="button"

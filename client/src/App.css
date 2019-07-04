@@ -190,7 +190,7 @@ header .logo {
   margin-top: 50px;
 }
 
-.user_cart_sum {
+.user_cart_total {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -201,12 +201,12 @@ header .logo {
   padding: 20px 30px;
 }
 
-.cart_no_items svg,
+.cart_empty svg,
 .cart_success svg {
   font-size: 130px;
   color: #717171;
 }
-.cart_no_items,
+.cart_empty,
 .cart_success {
   text-align: center;
   font-size: 28px;

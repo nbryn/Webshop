@@ -40,9 +40,10 @@ app.use(
 app.post("/webshop/users/auth", (request, response) => {
   User.findOne({ token: request.body.token }, (error, user) => {
     if (!user) {
-      return response.status(400).json({
+      return response.status(200).json({
         completed: false,
-        message: "No such token"
+        message: "No such token",
+        authenticated: false
       });
     } else {
       return response.status(200).json({

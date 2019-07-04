@@ -5,9 +5,10 @@ import { getQuantityInCart } from "../../actions/UserActions";
 import CartItem from "../user/CartItem";
 
 class Cart extends Component {
+  // Dont show total in UI before total is available
   state = {
     loading: true,
-    total: 0,
+    totalPrice: 0,
     showTotal: false,
     showSucces: false
   };
@@ -29,17 +30,57 @@ class Cart extends Component {
 
         this.props
           .dispatch(getQuantityInCart(cartItems, user.data.cart))
-          .then(() => {});
+          .then(() => {
+            const cartItems = this.props.user.booksInCart;
+            if (cartItems.length > 0) {
+              this.calculateTotalPrice(cartItems);
+            }
+          });
       }
     }
   }
+
+  noItemsInCart = () => (
+    <div className="cart_empty">You don't have anything in your cart</div>
+  );
+
+  // Calculate total price for all items in users cart
+  calculateTotalPrice = cartItems => {
+    let totalPrice = 0;
+
+    cartItems.forEach(book => {
+      totalPrice += parseInt(book.price, 10) * book.quantity;
+    });
+
+    // Update state to show total in UI
+    this.setState({
+      totalPrice,
+      showTotal: true
+    });
+  };
+
+  removeBookFromCart = id => {};
   render() {
     return (
       <UserLayout>
         <div>
           <h1>Cart</h1>
           <div className="user_cart">
-            <CartItem user={this.props.user} />
+            <CartItem
+              user={this.props.user}
+              removeBookFromCart={id => this.removeBookFromCart(id)}
+            />
+            {this.state.showTotal ? (
+              <div>
+                <div className="user_cart_total">
+                  <div style={{ left: "50px" }}>
+                    Total Price: ${this.state.totalPrice}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              this.noItemsInCart()
+            )}
           </div>
         </div>
       </UserLayout>

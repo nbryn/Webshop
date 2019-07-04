@@ -11,7 +11,7 @@ import Layout from "./components/layout/index";
 import SignIn from "./components/user/SignIn";
 import SignUp from "./components/user/SignUp";
 import Dashboard from "./components/user/Dashboard";
-import IsAuth from "./components/security/IsAuth";
+import IsAuth from "./components/user/IsAuth";
 import BookDetails from "./components/book/index";
 import Cart from "./components/user/Cart";
 
@@ -28,9 +28,9 @@ class App extends Component {
                 path="/book_details/:id"
                 component={IsAuth(BookDetails, false)}
               />
-              <Route exact path="/signin" component={IsAuth(SignIn, false)} />
-              <Route exact path="/signup" component={IsAuth(SignUp, false)} />
-              <Route exact path="/" component={IsAuth(Home, false)} />
+              <Route exact path="/signin" component={SignIn} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/" component={Home} />
               <Route exact path="/shop" component={IsAuth(Shop, false)} />
 
               <Route

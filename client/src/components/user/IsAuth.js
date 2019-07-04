@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import { authentication } from "../../actions/UserActions";
 
 // This component checks if user is logged in before showing the component in the UI
-export default function(Comp, showPage, admin = null) {
+export default function(Comp, reload, admin = null) {
   class IsAuth extends Component {
     state = {
-      showPage: true
+      loading: true
     };
 
     componentDidMount() {
@@ -17,12 +17,12 @@ export default function(Comp, showPage, admin = null) {
 
         // Check if user is logged in
         if (!user.data.authenticated) {
-          if (showPage) {
+          if (reload) {
             this.props.history.push("/");
           }
         } else {
           this.setState({
-            showPage: false
+            loading: false
           });
         }
       });
@@ -30,7 +30,7 @@ export default function(Comp, showPage, admin = null) {
 
     render() {
       //Loading Icon
-      if (this.state.showPage) {
+      if (this.state.loading) {
         return (
           <div className="main_loader">
             <CircularProgress style={{ color: "#2451F3" }} thickness={6} />
