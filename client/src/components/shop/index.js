@@ -12,9 +12,7 @@ class Shop extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(
-      getBooks(this.state.max, this.state.skip, this.state.filters)
-    );
+    this.props.dispatch(getBooks(this.state.max, this.state.skip));
   }
 
   render() {

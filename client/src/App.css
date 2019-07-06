@@ -59,7 +59,7 @@ header .logo {
 
 .card.shop {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   width: 500px;
   height: 500px;
   left: -5px;

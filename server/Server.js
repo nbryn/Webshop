@@ -16,7 +16,6 @@ const { Genre } = require("./models/Genre");
 // Middleware
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const { isAdmin } = require("./middleware/isAdmin");
 
 // Database connection
 mongoose.connect(process.env.DATABASE);
@@ -171,25 +170,38 @@ app.post("/webshop/users/addToCart", (request, response) => {
   });
 });
 
-// ------------------------------- AUTHOR ------------------------------ //
+// Remove book from cart
+app.get("/webshop/user/removeBookFromCart", (request, response) => {
+  // Find user by userID in request
+  User.findOneAndUpdate(
+    { _id: request.query.userId },
 
-// Persist Author
-app.post("/webshop/book/author", isAdmin, (request, response) => {
-  let author = new Author(request.body);
+    // Remove book from cart that matches bookID in request
+    { $pull: { cart: { id: mongoose.Types.ObjectId(request.query._id) } } },
 
-  try {
-    author.save((error, author) => {
-      return response.status(200).json({
-        completed: true,
-        author: author
+    // Get new state of users cart after book is removed
+    { new: true },
+    (error, doc) => {
+      const cart = doc.cart;
+      const array = cart.map(book => {
+        return mongoose.Types.ObjectId(book.id);
       });
-    });
-  } catch (error) {
-    return response.sendStatus(404).json({
-      completed: false
-    });
-  }
+
+      // Return all books left in cart after removal
+      Book.find({ _id: { $in: array } })
+        .populate("author")
+        .populate("genre")
+        .exec((error, booksInCart) => {
+          return response.status(200).json({
+            booksInCart,
+            cart
+          });
+        });
+    }
+  );
 });
+
+// ------------------------------- AUTHOR ------------------------------ //
 
 // Find all Authors
 app.get("/webshop/book/authors", (request, response) => {
@@ -206,24 +218,6 @@ app.get("/webshop/book/authors", (request, response) => {
 
 // ------------------------------- BOOK ------------------------------ //
 
-// Persist Book
-app.post("/webshop/book", isAdmin, (request, response) => {
-  let book = new Book(request.body);
-
-  try {
-    book.save((error, book) => {
-      return response.status(200).json({
-        completed: true,
-        book: book
-      });
-    });
-  } catch (error) {
-    return response.status(404).json({
-      completed: false
-    });
-  }
-});
-
 // Get books to show in shop
 app.post("/webshop/book/shop", (request, response) => {
   const req = request.body;
@@ -234,7 +228,7 @@ app.post("/webshop/book/shop", (request, response) => {
   let skip = parseInt(req.skip);
   let appliedFilters = {};
 
-  // Check if category is part request sent from client
+  // Check if category is part of request sent from client
   for (let key in req.filters) {
     if (req.filters[key].length > 0) {
       appliedFilters[key] = req.filters[key];
@@ -288,7 +282,7 @@ app.get("/webshop/book_by_id", (request, response) => {
 });
 
 // Get Book(s) by genre - e.g. /webshop/book_by_genre?genre=xxx&type=array
-app.get("/webshop/book_by_genre", isAdmin, (request, response) => {
+app.get("/webshop/book_by_genre", (request, response) => {
   let items, ids;
   let type = request.query.type;
   // Convert String to Array of Books
@@ -336,24 +330,6 @@ app.get("/webshop/book_by_sold", (request, response) => {
 });
 
 // ------------------------------- Genre ------------------------------ //
-
-// Persist Genre
-app.post("/webshop/book/genre", isAdmin, (request, response) => {
-  let genre = new Genre(request.body);
-
-  try {
-    genre.save((error, genre) => {
-      return response.status(200).json({
-        completed: true,
-        genre: genre
-      });
-    });
-  } catch (error) {
-    return response.status(400).json({
-      completed: false
-    });
-  }
-});
 
 // Get all Genres
 app.get("/webshop/book/genres", (request, response) => {

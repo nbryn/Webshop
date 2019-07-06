@@ -3,7 +3,8 @@ import {
   SET_USER,
   AUTH_USER,
   ADD_TO_CART,
-  GET_QUANTITY_IN_CART
+  GET_QUANTITY_IN_CART,
+  REMOVE_BOOK_FROM_CART
 } from "../actions/ActionTypes";
 
 // Update store when user action is dispatched
@@ -39,6 +40,16 @@ export default function(state = {}, action) {
       return Object.assign({
         ...state,
         booksInCart: action.payload
+      });
+    }
+    case REMOVE_BOOK_FROM_CART: {
+      return Object.assign({
+        ...state,
+        booksInCart: action.payload.booksInCart,
+        userData: {
+          ...state.userData,
+          cart: action.payload.cart
+        }
       });
     }
     default:

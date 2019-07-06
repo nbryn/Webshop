@@ -2,36 +2,26 @@ import { GET_BOOKS, GET_BOOK_DETAILS, CLEAR_BOOK_DETAILS } from "./ActionTypes";
 import axios from "axios";
 
 //Get all books from the server
-export const getBooks = (
-  max,
-  skip,
-  filters = [],
-  prevState = []
-) => async dispatch => {
+export const getBooks = (max, skip, prevState = []) => async dispatch => {
   const requestData = {
     max,
-    skip,
-    filters
+    skip
   };
 
-  try {
-    let response = await axios.post(
-      "http://localhost:3001/webshop/book/shop",
-      requestData
-    );
+  let response = await axios.post(
+    "http://localhost:3001/webshop/book/shop",
+    requestData
+  );
 
-    let responseData = {
-      books: response.data.books,
-      size: response.data.size
-    };
+  let responseData = {
+    books: response.data.books,
+    size: response.data.size
+  };
 
-    dispatch({
-      type: GET_BOOKS,
-      payload: responseData
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  dispatch({
+    type: GET_BOOKS,
+    payload: responseData
+  });
 };
 
 //Get Book Info from the server

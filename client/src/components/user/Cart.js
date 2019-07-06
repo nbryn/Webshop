@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import UserLayout from "./UserLayout";
-import { getQuantityInCart } from "../../actions/UserActions";
+import { getQuantityInCart, removeCartItem } from "../../actions/UserActions";
 import CartItem from "../user/CartItem";
 
 class Cart extends Component {
@@ -59,7 +59,17 @@ class Cart extends Component {
     });
   };
 
-  removeBookFromCart = id => {};
+  removeBookFromCart = id => {
+    this.props.dispatch(removeCartItem(id)).then(() => {
+      if (this.props.user.booksInCart < 1) {
+        this.setState({
+          showTotal: false
+        });
+      } else {
+        this.calculateTotalPrice(this.props.user.booksInCart);
+      }
+    });
+  };
   render() {
     return (
       <UserLayout>

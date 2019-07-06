@@ -28,9 +28,9 @@ class App extends Component {
                 path="/book_details/:id"
                 component={IsAuth(BookDetails, false)}
               />
-              <Route exact path="/signin" component={SignIn} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/" component={Home} />
+              <Route exact path="/signin" component={IsAuth(SignIn, false)} />
+              <Route exact path="/signup" component={IsAuth(SignUp, false)} />
+              <Route exact path="/" component={IsAuth(Home, false)} />
               <Route exact path="/shop" component={IsAuth(Shop, false)} />
 
               <Route
