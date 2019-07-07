@@ -86,8 +86,8 @@ export const getQuantityInCart = (cartItems, cart) => {
   const response = axios
     .get(`http://localhost:3001/webshop/book_by_id?id=${cartItems}&type=array`)
     .then(response => {
+      // Loops through each book in cart and adds quantity to the response
       cart.forEach(book => {
-        // Loop through each book in cart and add quantity to the response
         response.data.forEach((book1, index) => {
           if (book.id === book1._id) {
             response.data[index].quantity = book.quantity;
@@ -106,10 +106,13 @@ export const getQuantityInCart = (cartItems, cart) => {
 };
 
 //
-export const removeCartItem = id => {
+export const removeCartItem = (bookId, userId) => {
   const response = axios
-    .get(`http://localhost:3001/webshop/user/removeBookFromCart?_id=${id}`)
+    .get(
+      `http://localhost:3001/webshop/users/removeBookFromCart?_id=${bookId}&userId=${userId}`
+    )
     .then(response => {
+      // Loops through each book in cart and adds quantity to the response
       response.data.cart.forEach(book => {
         response.data.booksInCart.forEach((book1, index) => {
           if (book.id === book1._id) {

@@ -171,7 +171,7 @@ app.post("/webshop/users/addToCart", (request, response) => {
 });
 
 // Remove book from cart
-app.get("/webshop/user/removeBookFromCart", (request, response) => {
+app.get("/webshop/users/removeBookFromCart", (request, response) => {
   // Find user by userID in request
   User.findOneAndUpdate(
     { _id: request.query.userId },

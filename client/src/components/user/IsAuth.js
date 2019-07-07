@@ -15,7 +15,7 @@ export default function(Comp, authRequired, admin = null) {
       this.props.dispatch(authenticateUser()).then(response => {
         let user = this.props.user.userData;
 
-        // Check if user is logged in
+        // Checks if user is logged in
         if (!user.data.authenticated) {
           if (authRequired) {
             this.props.history.push("/");

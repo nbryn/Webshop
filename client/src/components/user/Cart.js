@@ -5,7 +5,7 @@ import { getQuantityInCart, removeCartItem } from "../../actions/UserActions";
 import CartItem from "../user/CartItem";
 
 class Cart extends Component {
-  // Dont show total in UI before total is available
+  // Dont show total in UI if cart is empty
   state = {
     loading: true,
     totalPrice: 0,
@@ -14,20 +14,19 @@ class Cart extends Component {
   };
 
   componentDidMount() {
-    let cartItems = [];
+    const cartItems = [];
     const user = this.props.user.userData;
 
-    // Cart only contains information about a book, not quantity in cart -> Need to fetch quantity from server
-    // Check if user has a cart
+    // Checks if user has a cart
     if (user.data.cart) {
-      // Check if cart is empty
-
+      // Checks if cart is empty
       if (user.data.cart.length > 0) {
-        // Push cart items into cartItems array
+        // Pushes ID of books in cart into the cartItems array
         user.data.cart.forEach(book => {
           cartItems.push(book.id);
         });
 
+        // Cart only contains information about a book, not quantity in cart -> Need to fetch quantity from server
         this.props
           .dispatch(getQuantityInCart(cartItems, user.data.cart))
           .then(() => {
@@ -59,12 +58,14 @@ class Cart extends Component {
     });
   };
 
-  removeBookFromCart = id => {
-    this.props.dispatch(removeCartItem(id)).then(() => {
+  removeBookFromCart = (bookId, userId) => {
+    this.props.dispatch(removeCartItem(bookId, userId)).then(() => {
+      // Remove total from UI if cart is empty
       if (this.props.user.booksInCart < 1) {
         this.setState({
           showTotal: false
         });
+        // Calculate price again after selected book is removed
       } else {
         this.calculateTotalPrice(this.props.user.booksInCart);
       }
