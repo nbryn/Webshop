@@ -1,24 +1,24 @@
 import React from "react";
 import Card from "./Card";
 
-const ShopCards = props => {
+const ShowCard = props => {
   const loadCards = () =>
-    props.list
-      ? props.list.map(card => (
+    props.books
+      ? props.books.map(card => (
           <Card key={card._id} {...card} grid={props.grid} />
         ))
       : null;
 
   return (
     <div className="card shop">
-      {props.list ? (
-        props.list.length === 0 ? (
+      {props.books ? (
+        props.books.length === 0 ? (
           <div className="nothing-found">Error</div>
         ) : null
       ) : null}
-      {loadCards(props.list)}
+      {loadCards(props.books)}
     </div>
   );
 };
 
-export default ShopCards;
+export default ShowCard;

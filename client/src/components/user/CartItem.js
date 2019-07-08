@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import notAvailable from "../images/notavailable.png";
 
 const CartItem = ({ user, removeBookFromCart }) => {
@@ -19,7 +19,7 @@ const CartItem = ({ user, removeBookFromCart }) => {
               <div
                 className="image"
                 style={{
-                  background: `url(${renderBookImage(book.images)} no-repeat`
+                  background: `url(${renderBookImage(book.image)} no-repeat`
                 }}
               />
             </div>
@@ -38,7 +38,9 @@ const CartItem = ({ user, removeBookFromCart }) => {
             <div className="item btn">
               <div
                 className="cart_remove_btn"
-                onClick={() => removeBookFromCart(book._id)}
+                onClick={() =>
+                  removeBookFromCart(book._id, user.userData.data._id)
+                }
               >
                 Remove
               </div>

@@ -14,16 +14,7 @@ header .logo {
 }
 
 .navbar.navbar-expand-lg {
-  margin-bottom: 0.05rem !important;
-}
-
-.sidebar {
-  position: absolute;
-  top: 0px;
-  left: 200px;
-  height: 804px;
-  width: 75px;
-  background-color: #1f35fa;
+  margin-bottom: 0rem !important;
 }
 
 .navbar .navbar-brand {
@@ -44,10 +35,20 @@ header .logo {
   height: 100px;
   background-color: #1f35fa !important;
   margin-bottom: -50px;
+  padding: 0px;
 }
 
 .footer-text {
   left: 100px;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0px;
+  left: 200px;
+  height: 804px;
+  width: 75px;
+  background-color: #1f35fa;
 }
 
 .card {
@@ -85,7 +86,6 @@ header .logo {
 
 .book_detail_wrapper .book_tags {
   padding-bottom: 10px;
-  border-bottom: 1px solid #d3d3d3;
 }
 
 .book_detail_wrapper .book_tags .tag {
@@ -303,7 +303,7 @@ header .logo {
 .shop-wrapper .right {
   position: absolute;
   width: 1000px;
-  left: 100px;
+  left: 500px;
   top: 50px;
 }
 

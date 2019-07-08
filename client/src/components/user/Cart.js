@@ -79,7 +79,9 @@ class Cart extends Component {
           <div className="user_cart">
             <CartItem
               user={this.props.user}
-              removeBookFromCart={id => this.removeBookFromCart(id)}
+              removeBookFromCart={(bookId, userId) =>
+                this.removeBookFromCart(bookId, userId)
+              }
             />
             {this.state.showTotal ? (
               <div>

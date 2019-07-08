@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ShopHeader from "./ShopHeader";
-import ShowCards from "./ShowCards";
+import ShowCard from "./ShowCard";
+import SideBar from "../user/SideBar";
 import { getBooks } from "../../actions/BookActions";
 import { connect } from "react-redux";
 
@@ -18,7 +19,26 @@ class Shop extends Component {
   render() {
     let books = this.props.books;
 
-    return (
+    const authenticated = (
+      <div>
+        <ShopHeader title="Books" />
+        <SideBar />
+
+        <div className="container">
+          <div className="shop-wrapper">
+            <div className="right">
+              <div className="shop-options">
+                <div className="shop-grids clear" />
+              </div>
+              <div>
+                <ShowCard books={books.bookArray} grid={this.state.grid} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+    const notAuthenticated = (
       <div>
         <ShopHeader title="Books" />
 
@@ -29,22 +49,27 @@ class Shop extends Component {
                 <div className="shop-grids clear" />
               </div>
               <div>
-                <ShowCards
-                  books={books.bookArray}
-                  size={books.size}
-                  grid={this.state.grid}
-                  max={this.state.limit}
-                />
+                <ShowCard books={books.bookArray} grid={this.state.grid} />
               </div>
             </div>
           </div>
         </div>
       </div>
     );
+
+    let shopLayout;
+
+    if (localStorage.getItem("jwtToken")) {
+      shopLayout = authenticated;
+    } else {
+      shopLayout = notAuthenticated;
+    }
+
+    return <div> {shopLayout}</div>;
   }
 }
 
-// Data from store that this component needs
+// Data from store/state that this component needs
 // Called everytime the store state changes
 const mapStateToProps = state => {
   return {
@@ -52,5 +77,5 @@ const mapStateToProps = state => {
   };
 };
 
-// Connecting component to the Redux store
+// Connecs component to the Redux store and thereby the state
 export default connect(mapStateToProps)(Shop);
