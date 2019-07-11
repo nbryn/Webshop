@@ -20,7 +20,7 @@ class SideBar extends Component {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/cart">
+              <a className="nav-link" href="/user/cart">
                 <i className="nav-icon cui-speedometer" /> Cart
               </a>
             </li>

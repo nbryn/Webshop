@@ -3,6 +3,7 @@ import ShopHeader from "../shop/ShopHeader";
 import { connect } from "react-redux";
 import { getBookDetails, clearBookDetails } from "../../actions/BookActions";
 import BookInfo from "./BookInfo";
+import UserLayout from "../user/UserLayout";
 
 class BookDetails extends Component {
   componentDidMount() {
@@ -21,13 +22,13 @@ class BookDetails extends Component {
   }
 
   render() {
-    return (
+    const authenticated = (
       <div>
         <ShopHeader title="Book Details" />
+        <SideBar />
         <div className="container">
           {this.props.books.bookDetails ? (
             <div className="book_detail_wrapper">
-              <div className="left">images</div>
               <div className="right">
                 <BookInfo
                   //Pass book and user details to child component
@@ -37,11 +38,42 @@ class BookDetails extends Component {
               </div>
             </div>
           ) : (
-            "Loading"
+            "Please wait"
           )}
         </div>
       </div>
     );
+    const notAuthenticated = (
+      <div>
+        <ShopHeader title="Book Details" />
+
+        <div className="container">
+          {this.props.books.bookDetails ? (
+            <div className="book_detail_wrapper">
+              <div className="right">
+                <BookInfo
+                  //Pass book and user details to child component
+                  bookDetails={this.props.books.bookDetails}
+                  userInfo={this.props.user.userData}
+                />
+              </div>
+            </div>
+          ) : (
+            "Please wait"
+          )}
+        </div>
+      </div>
+    );
+
+    let bookInfoLayout;
+
+    if (localStorage.getItem("jwtToken")) {
+      bookInfoLayout = authenticated;
+    } else {
+      bookInfoLayout = notAuthenticated;
+    }
+
+    return <div>{bookInfoLayout}</div>;
   }
 }
 

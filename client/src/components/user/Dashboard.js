@@ -11,9 +11,15 @@ class Dashboard extends Component {
           <div className="card">
             <h4>Account Information</h4>
             <div>
-              <span>Name: {user.data.fullName} </span>
+              <span>
+                {" "}
+                <strong> Name: </strong>
+                {user.data.fullName}{" "}
+              </span>
               <br />
-              <span>Email: {user.data.email}</span>
+              <span>
+                <strong> Email: </strong> {user.data.email}
+              </span>
             </div>
           </div>
           <br />

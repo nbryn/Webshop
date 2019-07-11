@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class BookInfo extends Component {
   // Handles click on Add To Cart button
-  addToCartHandler(bookId, userId) {
+  addBookToCart(bookId, userId) {
     // Dispatch user action addToCart
     this.props.dispatch(addToCart(bookId, userId));
   }
@@ -30,35 +30,39 @@ class BookInfo extends Component {
           )}
         </div>
         <div className="book_info">
-          <div>
-            <div className="item">
-              <strong>Description: </strong>
-              {bookDetails.description}
-            </div>
-            <div className="item">
-              <strong>Pages: </strong>
-              {bookDetails.pages}
-            </div>
+          <div className="item">
+            <strong>Description: </strong>
+            {bookDetails.description}
           </div>
+          <div className="item">
+            <strong>Pages: </strong>
+            {bookDetails.pages}
+          </div>
+
           <div className="book_info">
             <div className="item">
               <strong>Price: </strong> {bookDetails.price}
             </div>
             <div className="cart" />
           </div>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => {
-              // Chech if user is logged ind
-              if (localStorage.getItem("jwtToken")) {
-                // If user is logged in run addToCartHandler function
-                this.addToCartHandler(bookDetails._id, userId);
-              } else {
-                console.log("You need to login");
-              }
-            }}
-          />
+          <div className="book_info">
+            <div className="item">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => {
+                  // Checks if user is logged ind
+                  if (localStorage.getItem("jwtToken")) {
+                    this.addToCartHandler(bookDetails._id, userId);
+                  } else {
+                    this.props.history.push("/signup");
+                  }
+                }}
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -69,13 +69,10 @@ class Shop extends Component {
   }
 }
 
-// Data from store/state that this component needs
-// Called everytime the store state changes
 const mapStateToProps = state => {
   return {
     books: state.books
   };
 };
 
-// Connecs component to the Redux store and thereby the state
 export default connect(mapStateToProps)(Shop);
