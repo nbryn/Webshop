@@ -6,16 +6,16 @@ class Slides extends Component {
   render() {
     let offers = [
       {
-        title: "Book",
-        img: "../../images/Book.jpg",
-        line1: "Offer",
-        line2: "Yeah"
+        title: "Clean Code",
+        img: "/images/CleanCode.jpg",
+        line1: "Code Clean",
+        line2: "Get It Now!"
       },
       {
-        title: "",
-        img: "../../img/",
-        line1: "Offer",
-        line2: "Yeah"
+        title: "Clean Code",
+        img: "/images/CleanCode.jpg",
+        line1: "Code Clean",
+        line2: "Get It Now!"
       }
     ];
 
@@ -41,10 +41,8 @@ class Slides extends Component {
                 <div className="offer_button">
                   <div className="tag title">{slide.line1}</div>
                   <div className="tag low_title">{slide.line2}</div>
-                  <button type="button" className="btn btn-info">
-                    <Link to="/shop" color="primary">
-                      Go To Shop!
-                    </Link>
+                  <button type="button" className="btn btn-info btn-lg">
+                    <Link to="/shop">Go To Shop!</Link>
                   </button>
                 </div>
               </div>

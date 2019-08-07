@@ -3,7 +3,7 @@ import ShopHeader from "../shop/ShopHeader";
 import { connect } from "react-redux";
 import { getBookDetails, clearBookDetails } from "../../actions/BookActions";
 import BookInfo from "./BookInfo";
-import UserLayout from "../user/UserLayout";
+import SideBar from "../user/SideBar";
 
 class BookDetails extends Component {
   componentDidMount() {

@@ -75,7 +75,9 @@ class Cart extends Component {
     return (
       <UserLayout>
         <div>
-          <h1>Cart</h1>
+          <div className="cart_headline">
+            <h1>Cart </h1>
+          </div>
           <div className="user_cart">
             <CartItem
               user={this.props.user}
@@ -87,7 +89,7 @@ class Cart extends Component {
               <div>
                 <div className="user_cart_total">
                   <div style={{ left: "50px" }}>
-                    Total Price: ${this.state.totalPrice}
+                    Total Price: {this.state.totalPrice}$
                   </div>
                 </div>
               </div>

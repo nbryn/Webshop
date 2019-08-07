@@ -19,7 +19,7 @@ const CartItem = ({ user, removeBookFromCart }) => {
               <div
                 className="image"
                 style={{
-                  background: `url(${renderBookImage(book.image)} no-repeat`
+                  background: `url(${renderBookImage(book.image)}) no-repeat`
                 }}
               />
             </div>
@@ -33,7 +33,7 @@ const CartItem = ({ user, removeBookFromCart }) => {
             </div>
             <div className="item">
               <h5> Price</h5>
-              <div>${book.price}</div>
+              <div>{book.price}$</div>
             </div>
             <div className="item btn">
               <div

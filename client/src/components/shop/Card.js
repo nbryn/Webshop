@@ -3,24 +3,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class Card extends Component {
-  renderCardImage(images) {
-    if (images.length > 0) {
-      return images[0].url;
-    } else {
-      return "../../images/background.jpg";
-    }
-  }
-
   render() {
     const props = this.props;
     return (
       <div className={`card-item-wrapper ${props.grid}`}>
-        <div
-          className="card image"
-          style={{
-            background: `url(${this.renderCardImage(props.images)}) no-repeat`
-          }}
-        />
+        <div className="card image">
+          <img src="/images/NotA.jpg" />
+        </div>
 
         <div className="card info">
           <div className="tags">

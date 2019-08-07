@@ -14,6 +14,7 @@ class BookInfo extends Component {
     const userId = this.props.userInfo.data._id;
     return (
       <div className="container">
+        <br />
         <h4>{bookDetails.title} </h4>
 
         <div className="book_info">
@@ -31,7 +32,7 @@ class BookInfo extends Component {
         </div>
         <div className="book_info">
           <div className="item">
-            <strong>Description: </strong>
+            <strong>Info: </strong>
             {bookDetails.description}
           </div>
           <div className="item">
@@ -41,7 +42,7 @@ class BookInfo extends Component {
 
           <div className="book_info">
             <div className="item">
-              <strong>Price: </strong> {bookDetails.price}
+              <strong>Price: </strong> {bookDetails.price}$
             </div>
             <div className="cart" />
           </div>
@@ -53,7 +54,7 @@ class BookInfo extends Component {
                 onClick={() => {
                   // Checks if user is logged ind
                   if (localStorage.getItem("jwtToken")) {
-                    this.addToCartHandler(bookDetails._id, userId);
+                    this.addBookToCart(bookDetails._id, userId);
                   } else {
                     this.props.history.push("/signup");
                   }
