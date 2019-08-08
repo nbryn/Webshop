@@ -15,7 +15,7 @@ class BookInfo extends Component {
     return (
       <div className="container">
         <br />
-        <h4>{bookDetails.title} </h4>
+        <h4 className="book_title">{bookDetails.title} </h4>
 
         <div className="book_info">
           {bookDetails.inStock ? (

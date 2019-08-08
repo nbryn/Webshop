@@ -10,7 +10,7 @@ header .logo {
 }
 
 .navbar.navbar.navbar-expand-lg {
-  background-color: #1f35fa !important;
+  background-color: #0716a0 !important;
 }
 
 .navbar.navbar-expand-lg {
@@ -33,7 +33,7 @@ header .logo {
 
 .app-footer {
   height: 100px;
-  background-color: #1f35fa !important;
+  background-color: #0716a0 !important;
 }
 
 .footer-text {
@@ -46,7 +46,7 @@ header .logo {
   left: 200px;
   height: 804px;
   width: 75px;
-  background-color: #1f35fa;
+  background-color: #0716a0;
 }
 
 .card {
@@ -116,9 +116,17 @@ header .logo {
 .book_detail_wrapper .book_info .item {
   font-size: 15px;
   text-transform: uppercase;
-  color: #838383;
+  color: #fdfafa;
   padding-bottom: 15px;
   padding-top: 15px;
+}
+
+.book_title {
+  color: white;
+}
+
+.user_info {
+  color: white;
 }
 
 .book_detail_wrapper .book_image_container {
@@ -234,6 +242,7 @@ header .logo {
   min-height: 6rem;
   min-height: 75vh;
   padding-top: 85px;
+  background-image: url("/images/Background.jpg");
   background: -webkit-gradient(
     cover,
     cover,
@@ -286,7 +295,7 @@ header .logo {
   text-align: center;
   font-size: 30px;
   font-weight: 700;
-  color: #051827;
+  color: #fcfcfc;
 }
 
 .shop-wrapper {
@@ -354,7 +363,7 @@ header .logo {
 .card.image {
   display: flex;
   width: 150px;
-  height: 160px;
+  height: 140px;
   top: -75px;
   left: 25px;
 }
@@ -406,17 +415,20 @@ header .logo {
 .card-item-wrapper .tags .author {
   font-size: 14px;
   font-weight: 700;
-  color: #2196f3;
+  color: #0d6cca;
+  margin-top: -7px;
 }
 
 .card-item-wrapper .tags .title {
   font-weight: 350;
   font-size: 19px;
+  color: #e4e7eb;
 }
 
 .card-item-wrapper .tags .price {
   font-weight: 300;
   font-size: 14px;
+  color: #e4e7eb;
 }
 
 .btn.btn-secondary {

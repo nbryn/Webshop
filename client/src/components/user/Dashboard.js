@@ -8,8 +8,8 @@ class Dashboard extends Component {
       <UserLayout>
         <div>
           <div className="card">
-            <h4>Account Information</h4>
-            <div>
+            <h4 className="user_info">Account Information</h4>
+            <div className="user_info">
               <span>
                 {" "}
                 <strong> Name: </strong>
