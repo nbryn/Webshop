@@ -8,13 +8,13 @@ class Slides extends Component {
       {
         title: "Clean Code",
         img: "/images/CleanCode.jpg",
-        line1: "Code Clean",
+        line1: "Clean Software",
         line2: "Get It Now!"
       },
       {
         title: "Clean Code",
         img: "/images/CleanCode.jpg",
-        line1: "Code Clean",
+        line1: "Clean Software",
         line2: "Get It Now!"
       }
     ];

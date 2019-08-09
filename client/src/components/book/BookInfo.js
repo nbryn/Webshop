@@ -32,7 +32,7 @@ class BookInfo extends Component {
         </div>
         <div className="book_info">
           <div className="item">
-            <strong>Info: </strong>
+            <strong>About: </strong>
             {bookDetails.description}
           </div>
           <div className="item">

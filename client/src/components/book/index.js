@@ -38,7 +38,7 @@ class BookDetails extends Component {
               </div>
             </div>
           ) : (
-            "Please wait"
+            <h2 className="wait">"Please wait"</h2>
           )}
         </div>
       </div>

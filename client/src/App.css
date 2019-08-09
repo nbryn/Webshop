@@ -10,7 +10,15 @@ header .logo {
 }
 
 .navbar.navbar.navbar-expand-lg {
-  background-color: #0716a0 !important;
+  background-color: #0a0099fb !important;
+  border: 4px solid #0f02c0fb;
+}
+
+.menu_icon {
+  width: 35px;
+  height: 35px;
+  margin-right: 2px;
+  margin-top: -6px;
 }
 
 .navbar.navbar-expand-lg {
@@ -18,7 +26,7 @@ header .logo {
 }
 
 .navbar .navbar-brand {
-  color: #fcf !important;
+  color: white !important;
 }
 
 .nav-item {
@@ -32,21 +40,24 @@ header .logo {
 }
 
 .app-footer {
-  height: 100px;
-  background-color: #0716a0 !important;
+  height: 206px;
+  background-color: #0a0099fb !important;
+  border: 2px solid #0f02c0fb;
 }
 
-.footer-text {
+.text_footer {
   left: 100px;
+  color: white;
 }
 
 .sidebar {
   position: absolute;
   top: 0px;
   left: 200px;
-  height: 804px;
+  height: 817px;
   width: 75px;
-  background-color: #0716a0;
+  background-color: #0a0099fb;
+  border: 2px solid #0f02c0fb;
 }
 
 .card {
@@ -253,6 +264,10 @@ header .logo {
   );
 }
 
+.offer_container {
+  width: 500px;
+}
+
 .offer_container .offer_image {
   position: relative;
   background-position: center left !important;
@@ -286,7 +301,6 @@ header .logo {
 
 .shop-header {
   margin-top: -100px;
-  border-bottom: none;
   padding: 20px 0px;
   text-transform: uppercase;
 }
@@ -314,10 +328,6 @@ header .logo {
   width: 1000px;
   left: 500px;
   top: 50px;
-}
-
-.FilterCheckbox {
-  left: -10px;
 }
 
 .MuiListItemText {
@@ -379,6 +389,7 @@ header .logo {
 
 .cart_headline {
   text-align: center;
+  color: white;
 }
 
 .card.shop {
@@ -391,12 +402,18 @@ header .logo {
   border: transparent;
 }
 
+.wait {
+  text-align: center;
+  color: white;
+}
+
 .card-item-wrapper {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   width: 235px;
   left: 0px;
+  height: 370px;
   padding: 80px 20px;
 }
 

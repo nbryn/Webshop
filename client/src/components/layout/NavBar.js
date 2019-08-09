@@ -14,9 +14,11 @@ class NavBar extends Component {
     const isAuthenticated = (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
         <Link className="navbar-brand" to="/">
+          <img className="menu_icon" src="/images/home.png" />
           Home
         </Link>
         <Link className="navbar-brand" to="/user/dashboard">
+          <img className="menu_icon" src="/images/user.png" />
           Account
         </Link>
         <button
@@ -33,6 +35,7 @@ class NavBar extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto" />
           <Link className="navbar-brand" to="/user/cart">
+            <img className="menu_icon" src="/images/cart.svg" />
             Cart
           </Link>
           <a
@@ -49,9 +52,11 @@ class NavBar extends Component {
     const notAuthenticated = (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
         <Link className="navbar-brand" to="/">
+          <img className="menu_icon" src="/images/home.png" />
           Home
         </Link>
         <Link className="navbar-brand" to="/shop">
+          <img className="menu_icon" src="/images/shop.svg" />
           Shop
         </Link>
         <button
