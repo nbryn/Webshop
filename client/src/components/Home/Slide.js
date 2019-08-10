@@ -8,13 +8,13 @@ class Slides extends Component {
       {
         title: "Clean Code",
         img: "/images/CleanCode.jpg",
-        line1: "Clean Software",
+        line1: "Write Clean Code",
         line2: "Get It Now!"
       },
       {
-        title: "Clean Code",
-        img: "/images/CleanCode.jpg",
-        line1: "Clean Software",
+        title: "Discrete Math",
+        img: "/images/Discrete.jpg",
+        line1: "Learn Discrete Math",
         line2: "Get It Now!"
       }
     ];
@@ -42,7 +42,7 @@ class Slides extends Component {
                   <div className="tag title">{slide.line1}</div>
                   <div className="tag low_title">{slide.line2}</div>
                   <button type="button" className="btn btn-info btn-lg">
-                    <Link to="/shop">Go To Shop!</Link>
+                    <Link to="/shop">Go To Shop</Link>
                   </button>
                 </div>
               </div>

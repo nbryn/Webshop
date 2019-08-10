@@ -46,7 +46,15 @@ header .logo {
 }
 
 .text_footer {
-  left: 100px;
+  position: absolute;
+  left: 800px;
+  color: white;
+}
+
+.welcome_text {
+  position: absolute;
+  top: 0px;
+  left: 900px;
   color: white;
 }
 
@@ -265,13 +273,15 @@ header .logo {
 }
 
 .offer_container {
-  width: 500px;
+  position: absolute;
+  width: 520px;
+  left: 700px;
 }
 
 .offer_container .offer_image {
   position: relative;
   background-position: center left !important;
-  height: 350px !important;
+  height: 340px !important;
 }
 
 .offer_container .offer_button {
@@ -289,12 +299,12 @@ header .logo {
 }
 
 .offer_container .offer_button .tag.title {
-  font-size: 40px;
+  font-size: 25px;
   font-weight: 700;
 }
 
 .offer_container .offer_button .tag.low_title {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 300;
   margin-top: 10px;
 }
