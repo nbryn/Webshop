@@ -311,8 +311,9 @@ header .logo {
 
 .shop-header {
   margin-top: -100px;
-  padding: 20px 0px;
+  padding: 10px 0px;
   text-transform: uppercase;
+  border: 1px solid white;
 }
 
 .shop-title {
@@ -355,11 +356,6 @@ header .logo {
 .filter-check-box-value {
   position: absolute;
   left: 45px;
-}
-
-.shop-options {
-  border-bottom: 1px solid #e8e8e8;
-  margin: 0px 20px 20px 20px;
 }
 
 .card-block {
@@ -407,7 +403,7 @@ header .logo {
   grid-template-columns: repeat(3, 1fr);
   width: 500px;
   height: 500px;
-  left: -5px;
+  left: 85px;
   top: -21px;
   border: transparent;
 }
