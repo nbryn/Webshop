@@ -76,7 +76,7 @@ class Cart extends Component {
       <UserLayout>
         <div>
           <div>
-            <h1 className="cart_headline">Cart </h1>
+            <h1 className="cart-headline">Cart </h1>
           </div>
           <div className="user_cart">
             <CartItem

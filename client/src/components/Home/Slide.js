@@ -32,15 +32,15 @@ class Slides extends Component {
         ? offers.map((slide, counter) => (
             <div key={counter}>
               <div
-                className="offer_image"
+                className="offer-image"
                 style={{
                   background: `url(${slide.img})`,
                   height: `${window.innerHeight}px`
                 }}
               >
-                <div className="offer_button">
+                <div className="offer-button">
                   <div className="tag title">{slide.line1}</div>
-                  <div className="tag low_title">{slide.line2}</div>
+                  <div className="tag low-title">{slide.line2}</div>
                   <button type="button" className="btn btn-info btn-lg">
                     <Link to="/shop">Go To Shop</Link>
                   </button>
@@ -51,7 +51,7 @@ class Slides extends Component {
         : null;
 
     return (
-      <div className="offer_container">
+      <div className="offer-container">
         <Slider {...settings}>{generateSlides()}</Slider>
       </div>
     );

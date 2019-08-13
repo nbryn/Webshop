@@ -272,25 +272,25 @@ header .logo {
   );
 }
 
-.offer_container {
+.offer-container {
   position: absolute;
   width: 520px;
   left: 700px;
 }
 
-.offer_container .offer_image {
+.offer-container .offer-image {
   position: relative;
   background-position: center left !important;
   height: 340px !important;
 }
 
-.offer_container .offer_button {
+.offer-container .offer-button {
   position: absolute;
   top: 45%;
   left: 8%;
 }
 
-.offer_container .offer_button .tag {
+.offer-container .offer-button .tag {
   background: #82828287;
   color: #ffffff;
   padding: 0px 20px;
@@ -298,12 +298,12 @@ header .logo {
   display: table;
 }
 
-.offer_container .offer_button .tag.title {
+.offer-container .offer-button .tag.title {
   font-size: 25px;
   font-weight: 700;
 }
 
-.offer_container .offer_button .tag.low_title {
+.offer-container .offer-button .tag.low-title {
   font-size: 20px;
   font-weight: 300;
   margin-top: 10px;
@@ -339,18 +339,6 @@ header .logo {
   width: 1000px;
   left: 500px;
   top: 50px;
-}
-
-.MuiListItemText {
-  position: relative;
-  left: 40px;
-  padding: 0px;
-}
-
-.MuiListItem {
-  position: absolute;
-  left: 40px;
-  padding: 0px;
 }
 
 .filter-check-box-value {
@@ -393,7 +381,7 @@ header .logo {
   border: transparent;
 }
 
-.cart_headline {
+.cart-headline {
   text-align: center;
   color: white;
 }
@@ -403,7 +391,7 @@ header .logo {
   grid-template-columns: repeat(3, 1fr);
   width: 500px;
   height: 500px;
-  left: 85px;
+  left: 160px;
   top: -21px;
   border: transparent;
 }

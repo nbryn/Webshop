@@ -27,12 +27,10 @@ class Shop extends Component {
         <div className="container">
           <div className="shop-wrapper">
             <div className="right">
-              <div className="shop-options">
-                <div className="shop-grids clear" />
-              </div>
-              <div>
-                <ShowCard books={books.bookArray} grid={this.state.grid} />
-              </div>
+              <div className="shop-grids clear" />
+            </div>
+            <div>
+              <ShowCard books={books.bookArray} grid={this.state.grid} />
             </div>
           </div>
         </div>
