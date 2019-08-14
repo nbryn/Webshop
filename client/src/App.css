@@ -31,6 +31,12 @@ header .logo {
 
 .nav-item {
   left: -30px;
+  top: -30px;
+}
+
+.nav-title {
+  left: -30px;
+  padding: 2.8rem 1rem !important;
 }
 
 .nav > ul > a:focus,
@@ -45,13 +51,13 @@ header .logo {
   border: 2px solid #0f02c0fb;
 }
 
-.text_footer {
+.text-footer {
   position: absolute;
   left: 800px;
   color: white;
 }
 
-.welcome_text {
+.welcome-text {
   position: absolute;
   top: 0px;
   left: 900px;
@@ -314,9 +320,12 @@ header .logo {
   padding: 10px 0px;
   text-transform: uppercase;
   border: 1px solid white;
+  border-right: none;
+  border-left: none;
 }
 
 .shop-title {
+  padding-top: 3px;
   text-align: center;
   font-size: 30px;
   font-weight: 700;

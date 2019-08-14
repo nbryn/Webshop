@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <div className="fill">
-        <h3 className="welcome_text">Welcome!</h3>
+        <h3 className="welcome-text">Welcome!</h3>
         <Slide />
       </div>
     );
