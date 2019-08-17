@@ -28,7 +28,7 @@ class BookDetails extends Component {
         <SideBar />
         <div className="container">
           {this.props.books.bookDetails ? (
-            <div className="book_detail_wrapper">
+            <div className="book-details-wrapper">
               <div className="right">
                 <BookInfo
                   //Pass book and user details to child component
@@ -38,7 +38,7 @@ class BookDetails extends Component {
               </div>
             </div>
           ) : (
-            <h2 className="wait">"Please wait"</h2>
+            <h2 className="wait">Please wait</h2>
           )}
         </div>
       </div>
@@ -49,7 +49,7 @@ class BookDetails extends Component {
 
         <div className="container">
           {this.props.books.bookDetails ? (
-            <div className="book_detail_wrapper">
+            <div className="book-details-wrapper">
               <div className="right">
                 <BookInfo
                   //Pass book and user details to child component
@@ -59,7 +59,7 @@ class BookDetails extends Component {
               </div>
             </div>
           ) : (
-            "Please wait"
+            <h2 className="wait">Please wait</h2>
           )}
         </div>
       </div>

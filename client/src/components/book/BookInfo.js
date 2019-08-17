@@ -15,22 +15,22 @@ class BookInfo extends Component {
     return (
       <div className="container">
         <br />
-        <h4 className="book_title">{bookDetails.title} </h4>
+        <h4 className="book-title">{bookDetails.title} </h4>
 
-        <div className="book_info">
+        <div className="book-info">
           {bookDetails.inStock ? (
             <div className="item">
               <strong>In Stock: </strong> Yes
             </div>
           ) : (
             <div className="tag">
-              <div className="tag_text">
+              <div className="tag-text">
                 <div>In stock: No</div>
               </div>
             </div>
           )}
         </div>
-        <div className="book_info">
+        <div className="book-info">
           <div className="item">
             <strong>About: </strong>
             {bookDetails.description}
@@ -40,13 +40,13 @@ class BookInfo extends Component {
             {bookDetails.pages}
           </div>
 
-          <div className="book_info">
+          <div className="book-info">
             <div className="item">
               <strong>Price: </strong> {bookDetails.price}$
             </div>
             <div className="cart" />
           </div>
-          <div className="book_info">
+          <div className="book-info">
             <div className="item">
               <button
                 type="button"

@@ -8,7 +8,7 @@ class Card extends Component {
     return (
       <div className={`card-item-wrapper ${props.grid}`}>
         <div className="card image">
-          <img src="/images/NotA.jpg" />
+          <img src="/images/NotA.jpg" alt="" />
         </div>
 
         <div className="card info">

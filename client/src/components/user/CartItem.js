@@ -14,7 +14,7 @@ const CartItem = ({ user, removeBookFromCart }) => {
     // Check if user has anything in cart
     user.booksInCart
       ? user.booksInCart.map(book => (
-          <div className="user_cart_block" key={book._id}>
+          <div className="user-cart-block" key={book._id}>
             <div className="item">
               <div
                 className="image"
@@ -37,7 +37,7 @@ const CartItem = ({ user, removeBookFromCart }) => {
             </div>
             <div className="item btn">
               <div
-                className="cart_remove_btn"
+                className="cart-remove-btn"
                 onClick={() =>
                   removeBookFromCart(book._id, user.userData.data._id)
                 }
