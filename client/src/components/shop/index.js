@@ -19,7 +19,7 @@ class Shop extends Component {
   render() {
     let books = this.props.books;
 
-    const authenticated = (
+    return (
       <div>
         <ShopHeader title="Books" />
         <SideBar />
@@ -34,30 +34,6 @@ class Shop extends Component {
         </div>
       </div>
     );
-    const notAuthenticated = (
-      <div>
-        <ShopHeader title="Books" />
-        <SideBar />
-        <div className="container">
-          <div className="shop-wrapper">
-            <div className="right" />
-            <div>
-              <ShowCard books={books.bookArray} grid={this.state.grid} />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-
-    let shopLayout;
-
-    if (localStorage.getItem("jwtToken")) {
-      shopLayout = authenticated;
-    } else {
-      shopLayout = notAuthenticated;
-    }
-
-    return <div> {shopLayout}</div>;
   }
 }
 

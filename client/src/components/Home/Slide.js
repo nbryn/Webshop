@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 
-class Slides extends Component {
+class Slide extends Component {
   render() {
-    let offers = [
+    const offers = [
       {
         title: "Clean Code",
         img: "/images/CleanCode.jpg",
@@ -19,7 +19,7 @@ class Slides extends Component {
       }
     ];
 
-    let settings = {
+    const settings = {
       dots: false,
       infinite: true,
       speed: 500,
@@ -27,7 +27,7 @@ class Slides extends Component {
       arrows: false
     };
 
-    let generateSlides = () =>
+    const generateSlides = () =>
       offers
         ? offers.map((slide, counter) => (
             <div key={counter}>
@@ -58,4 +58,4 @@ class Slides extends Component {
   }
 }
 
-export default Slides;
+export default Slide;
