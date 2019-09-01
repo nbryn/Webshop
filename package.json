@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha tests",
-    "start-server": "nodemon server/app.js --ignore client/ ",
-    "start-client": "npm run --prefix client start:dev",
-    "dev": "concurrently -n api,ui,prettier \"  yarn run start-server  \"  \"  yarn run start-client  \"  \"  yarn run prettier  \"",
-    "prettier": "npx onchange 'server/**/*.*' 'client/src/**/*.*' -- npx prettier --write {{changed}}",
-    "start": "nodemon server/app.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node server.js",
+    "server": "nodemon server/server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "engines": {
     "node": "10.14.0"
