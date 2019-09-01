@@ -9,8 +9,7 @@
     "start-client": "npm run --prefix client start:dev",
     "dev": "concurrently -n api,ui,prettier \"  yarn run start-server  \"  \"  yarn run start-client  \"  \"  yarn run prettier  \"",
     "prettier": "npx onchange 'server/**/*.*' 'client/src/**/*.*' -- npx prettier --write {{changed}}",
-    "start": "nodemon server/app.js",
-    "heroku-postbuild": "NPM_CONFIG_PORODUCTION=false npm install --prefix client && NODE_PATH=src npm run build --prefix client"
+    "start": "nodemon server/app.js"
   },
   "engines": {
     "node": "10.14.0"
