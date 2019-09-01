@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "@coreui/coreui": "^2.1.6",
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/free-solid-svg-icons": "5.1.0",
