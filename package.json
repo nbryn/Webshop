@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node server.js",
-    "server": "nodemon server/server.js",
-    "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "test": "./node_modules/.bin/mocha tests",
+    "start-server": "nodemon server/app.js --ignore client/ ",
+    "start-client": "npm run --prefix client start:dev",
+    "dev": "concurrently -n api,ui,prettier \"  yarn run start-server  \"  \"  yarn run start-client  \"  \"  yarn run prettier  \"",
+    "prettier": "npx onchange 'server/**/*.*' 'client/src/**/*.*' -- npx prettier --write {{changed}}",
+    "start": "nodemon server/app.js",
+    "heroku-postbuild": "NPM_CONFIG_PORODUCTION=false npm install --prefix client && NODE_PATH=src npm run build --prefix client"
   },
   "engines": {
     "node": "10.14.0"
@@ -16,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/runtime": "7.0.0-beta.55",
     "@coreui/coreui": "^2.1.6",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.14",
