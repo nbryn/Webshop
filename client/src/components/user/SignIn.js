@@ -62,13 +62,13 @@ class SignIn extends Component {
     // Prevents default submit action
     event.preventDefault();
 
-    let LoginRequest = {
+    const loginRequest = {
       email: this.state.email,
       password: this.state.password
     };
 
     // Dispatch login action
-    this.props.login(LoginRequest, this.props.history);
+    this.props.login(loginRequest, this.props.history);
   }
 
   // Update state on change

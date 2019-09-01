@@ -81,7 +81,7 @@ export const addToCart = (bookId, userId) => {
   };
 };
 
-// Get quantity of book in users cart for display in the cart component
+// Get quantity of books in users cart for display in the cart component
 export const getQuantityInCart = (cartItems, cart) => {
   const response = axios
     .get(`http://localhost:3001/webshop/book_by_id?id=${cartItems}&type=array`)

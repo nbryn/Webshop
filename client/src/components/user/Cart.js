@@ -9,8 +9,7 @@ class Cart extends Component {
   state = {
     loading: true,
     totalPrice: 0,
-    showTotal: false,
-    showSucces: false
+    showTotal: false
   };
 
   componentDidMount() {
@@ -21,12 +20,12 @@ class Cart extends Component {
     if (user.data.cart) {
       // Checks if cart is empty
       if (user.data.cart.length > 0) {
-        // Pushes ID of books in cart into the cartItems array
+        // Push ID of books in the cart into the cartItems array
         user.data.cart.forEach(book => {
           cartItems.push(book.id);
         });
 
-        // Cart only contains information about a book, not quantity in cart -> Need to fetch quantity from server
+        // Cart only contains information about books in the cart, not quantity -> Need to fetch quantity from server
         this.props
           .dispatch(getQuantityInCart(cartItems, user.data.cart))
           .then(() => {

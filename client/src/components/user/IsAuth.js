@@ -13,7 +13,7 @@ export default function(Comp, authRequired, admin = null) {
     componentDidMount() {
       // Run authentication function when component is loaded
       this.props.dispatch(authenticateUser()).then(response => {
-        let user = this.props.user.userData;
+        const user = this.props.user.userData;
 
         // Checks if user is logged in
         if (!user.data.authenticated) {
