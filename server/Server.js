@@ -18,15 +18,8 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 // Database connection
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/WEBSHOP",
-  function(err, database) {
-    if (err) {
-      console.log(err);
-      process.exit(1);
-    }
-  }
-);
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+
 // Extract body of incoming request stream and expose it on request.body
 app.use(bodyParser.urlencoded({ extended: true }));
 // Only JSON format
