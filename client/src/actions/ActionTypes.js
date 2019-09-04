@@ -9,7 +9,6 @@ export const REMOVE_BOOK_FROM_CART = "REMOVE_BOOK_FROM_CART";
 
 //Book
 export const GET_AUTHORS = "GET_AUTHORS";
-export const GET_GENRES = "GET_GENRES";
-export const GET_BOOKS = "GET_BOOKS";
+export const GET_ALL_BOOKS = "GET_ALL_BOOKS";
 export const GET_BOOK_DETAILS = "GET_BOOK_DETAILS";
 export const CLEAR_BOOK_DETAILS = "CLEAR_BOOK_DETAILS";
