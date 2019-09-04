@@ -29,7 +29,7 @@ export const getAllBooks = (max, skip, prevState = []) => async dispatch => {
 //Get Book Info from the server
 export function getBookDetails(id) {
   const request = axios
-    .get(`${BOOK}/book/book_by_id?id=${id}&type=array`)
+    .get(`${BOOK}/book_by_id?id=${id}&type=array`)
     .then(response => {
       return response.data[0];
     });
