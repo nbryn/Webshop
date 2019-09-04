@@ -351,7 +351,9 @@ app.get("/webshop/book/genres", (request, response) => {
 if (process.env.NODE_ENV === "PRODUCTION") {
   const path = require("path");
   app.get("/*", (request, response) => {
-    res.sendfile(path.resolve(__dirname, "../client", "build", "index.html"));
+    response.sendfile(
+      path.resolve(__dirname, "../client", "build", "index.html")
+    );
   });
 }
 
