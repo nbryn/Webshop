@@ -7,7 +7,7 @@ import { BOOK } from "./ServerRoutes";
 // Get genres from server
 export const getGenres = () => async dispatch => {
   try {
-    let response = await axios.get(`${BOOK}/webshop/book/genres`);
+    let response = await axios.get(`${BOOK}/genres`);
 
     // Forward information from server to the store
     dispatch({

@@ -9,7 +9,7 @@ export const getBooks = (max, skip, prevState = []) => async dispatch => {
     skip
   };
 
-  let response = await axios.post(`${BOOK}/webshop/book/shop`, requestData);
+  let response = await axios.post(`${BOOK}/shop`, requestData);
 
   let responseData = {
     books: response.data.books,
@@ -25,7 +25,7 @@ export const getBooks = (max, skip, prevState = []) => async dispatch => {
 //Get Book Info from the server
 export function getBookDetails(id) {
   const request = axios
-    .get(`${BOOK}/webshop/book_by_id?id=${id}&type=array`)
+    .get(`${BOOK}/book_by_id?id=${id}&type=array`)
     .then(response => {
       return response.data[0];
     });

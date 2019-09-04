@@ -11,7 +11,7 @@ import { USER } from "./ServerRoutes";
 
 // Persist user -> Dispatch NEW_User
 export const newUser = (user, history) => async dispatch => {
-  const response = await axios.post(`${USER}/webshop/users/signup`, user);
+  const response = await axios.post(`${USER}/signup`, user);
   history.push("/signin");
 
   // Dispatch NEW_USER action to store
@@ -43,7 +43,7 @@ export const authenticateUser = () => async dispatch => {
   // Get token from local storage
   const jwtToken = localStorage.getItem("jwtToken");
   const request = { token: jwtToken };
-  const response = await axios.post(`${USER}/webshop/users/auth`, request);
+  const response = await axios.post(`${USER}/auth`, request);
 
   // Dispatch AUTH_USER action to store
   dispatch({
@@ -64,7 +64,7 @@ export const signOut = () => dispatch => {
 // Forward book ID and User ID to server for persistence in cart
 export const addToCart = (bookId, userId) => {
   const response = axios
-    .post(`${USER}webshop/users/addtocart?bookId=${bookId}&userId=${userId}`)
+    .post(`${USER}/addtocart?bookId=${bookId}&userId=${userId}`)
     .then(response => response.data);
 
   // Dispatch happens @ component
@@ -77,7 +77,7 @@ export const addToCart = (bookId, userId) => {
 // Get quantity of books in users cart for display in the cart component
 export const getQuantityInCart = (cartItems, cart) => {
   const response = axios
-    .get(`${USER}webshop/book_by_id?id=${cartItems}&type=array`)
+    .get(`${USER}/book_by_id?id=${cartItems}&type=array`)
     .then(response => {
       // Loops through each book in cart and adds quantity to the response
       cart.forEach(book => {
@@ -101,9 +101,7 @@ export const getQuantityInCart = (cartItems, cart) => {
 //
 export const removeCartItem = (bookId, userId) => {
   const response = axios
-    .get(
-      `${USER}webshop/users/removeBookFromCart?_id=${bookId}&userId=${userId}`
-    )
+    .get(`${USER}/removeBookFromCart?_id=${bookId}&userId=${userId}`)
     .then(response => {
       // Loops through each book in cart and adds quantity to the response
       response.data.cart.forEach(book => {

@@ -6,7 +6,7 @@ import { BOOK } from "./ServerRoutes";
 
 // Get all authors from server
 export const getAuthors = () => async dispatch => {
-  let response = await axios.get(`${BOOK}/book/authors`);
+  let response = await axios.get(`${BOOK}/authors`);
 
   // Send information retrieved to the store
   dispatch({
