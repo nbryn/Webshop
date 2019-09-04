@@ -29,13 +29,13 @@ app.use(bodyParser.json());
 // Parse cookie header
 app.use(cookieParser());
 // Allow cors
-app.use(
+/*app.use(
   cors({
     credentials: true,
     origin: "http://localhost:3000"
   })
 );
-
+*/
 // ------------------------------- USER ------------------------------ //
 
 // Authentication => true/false => next => request, response
