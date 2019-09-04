@@ -23,7 +23,7 @@
     "babel-preset-env": "^1.7.0",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "cloudinary": "^1.11.0",
     "concurrently": "^3.6.0",
     "connect": "^3.7.0",
