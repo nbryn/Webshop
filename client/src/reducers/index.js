@@ -7,7 +7,6 @@ import books from "./BookReducer";
 const rootReducer = combineReducers({
   user,
   authors,
-  genres,
   books
 });
 
