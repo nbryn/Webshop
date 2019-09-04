@@ -259,7 +259,7 @@ app.post("/webshop/book/shop", (request, response) => {
 });
 
 // Get Book(s) by id - e.g. /webshop/book_by_id?id=xxx&type=array
-app.get("/webshop/book_by_id", (request, response) => {
+app.get("/webshop/book/book_by_id", (request, response) => {
   let items, ids;
   const type = request.query.type;
   // Convert String to Array of Books
