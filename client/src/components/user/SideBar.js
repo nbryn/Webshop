@@ -10,13 +10,13 @@ class SideBar extends Component {
             <li className="nav-title">Menu</li>
 
             <li className="nav-item">
-              <Link className="nav-link" href="/shop">
+              <Link className="nav-link" to="/shop">
                 <i className="nav-icon cui-speedometer" /> Shop
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" href="/user/cart">
+              <Link className="nav-link" to="/user/cart">
                 <i className="nav-icon cui-speedometer" /> Cart
               </Link>
             </li>

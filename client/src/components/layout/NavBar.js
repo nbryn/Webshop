@@ -40,7 +40,7 @@ class NavBar extends Component {
           </Link>
           <Link
             className="navbar-brand"
-            href="/"
+            To="/"
             onClick={this.signOut.bind(this)}
           >
             Sign Out
@@ -75,10 +75,10 @@ class NavBar extends Component {
             <li className="nav-item active" />
           </ul>
 
-          <Link className="navbar-brand" href="/signin">
+          <Link className="navbar-brand" to="/signin">
             Sign In
           </Link>
-          <Link className="navbar-brand" href="/signup">
+          <Link className="navbar-brand" to="/signup">
             Sign Up
           </Link>
         </div>
