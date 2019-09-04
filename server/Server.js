@@ -7,6 +7,8 @@ require("dotenv").config();
 
 const app = express();
 
+app.use(express.static("client/build"));
+
 // Models
 const { User } = require("./models/User");
 const { Author } = require("./models/Author");
@@ -18,7 +20,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 // Database connection
-mongoose.connect("mongodb://localhost:27017/WEBSHOP");
+mongoose.connect(process.env.MONGODB_URI);
 
 // Extract body of incoming request stream and expose it on request.body
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -344,6 +346,14 @@ app.get("/webshop/book/genres", (request, response) => {
     });
   }
 });
+
+// heroku
+if (process.env.NODE_ENV === "PRODUCTION") {
+  const path = require("path");
+  app.get("/*", (request, response) => {
+    res.sendfile(path.resolve(__dirname, "../client", "build", "index.html"));
+  });
+}
 
 // Localhost Port
 const port = process.env.PORT || 3001;
