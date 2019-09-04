@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ShopHeader from "./ShopHeader";
 import ShowCard from "./ShowCard";
 import SideBar from "../user/SideBar";
-import { getBooks } from "../../actions/BookActions";
+import { getAllBooks } from "../../actions/BookActions";
 import { connect } from "react-redux";
 
 class Shop extends Component {
@@ -13,7 +13,7 @@ class Shop extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(getBooks(this.state.max, this.state.skip));
+    this.props.dispatch(getAllBooks(this.state.max, this.state.skip));
   }
 
   render() {

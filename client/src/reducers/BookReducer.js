@@ -1,5 +1,5 @@
 import {
-  GET_BOOKS,
+  GET_ALL_BOOKS,
   GET_BOOK_DETAILS,
   CLEAR_BOOK_DETAILS
 } from "../actions/ActionTypes";
@@ -9,7 +9,7 @@ import {
 export default function(state = {}, action) {
   // Does not mutate state, creates copy with Object.assign
   switch (action.type) {
-    case GET_BOOKS:
+    case GET_ALL_BOOKS:
       return Object.assign({
         ...state,
         bookArray: action.payload.books,

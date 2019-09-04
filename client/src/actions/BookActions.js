@@ -1,9 +1,13 @@
-import { GET_BOOKS, GET_BOOK_DETAILS, CLEAR_BOOK_DETAILS } from "./ActionTypes";
+import {
+  GET_ALL_BOOKS,
+  GET_BOOK_DETAILS,
+  CLEAR_BOOK_DETAILS
+} from "./ActionTypes";
 import axios from "axios";
 import { BOOK } from "./ServerRoutes";
 
 //Get all books from the server
-export const getBooks = (max, skip, prevState = []) => async dispatch => {
+export const getAllBooks = (max, skip, prevState = []) => async dispatch => {
   const requestData = {
     max,
     skip
@@ -17,7 +21,7 @@ export const getBooks = (max, skip, prevState = []) => async dispatch => {
   };
 
   dispatch({
-    type: GET_BOOKS,
+    type: GET_ALL_BOOKS,
     payload: responseData
   });
 };
@@ -35,7 +39,7 @@ export function getBookDetails(id) {
   };
 }
 
-//Clear details so that we dont have 2x details in state
+//Clear details so that state does not have 2x book details
 export function clearBookDetails() {
   return {
     type: CLEAR_BOOK_DETAILS,
