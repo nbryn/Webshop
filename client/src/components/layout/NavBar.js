@@ -38,13 +38,13 @@ class NavBar extends Component {
             <img className="menu_icon" src="/images/cart.svg" alt="" />
             Cart
           </Link>
-          <a
+          <Link
             className="navbar-brand"
             href="/"
             onClick={this.signOut.bind(this)}
           >
             Sign Out
-          </a>
+          </Link>
         </div>
       </nav>
     );
@@ -75,12 +75,12 @@ class NavBar extends Component {
             <li className="nav-item active" />
           </ul>
 
-          <a className="navbar-brand" href="/signin">
+          <Link className="navbar-brand" href="/signin">
             Sign In
-          </a>
-          <a className="navbar-brand" href="/signup">
+          </Link>
+          <Link className="navbar-brand" href="/signup">
             Sign Up
-          </a>
+          </Link>
         </div>
       </nav>
     );
