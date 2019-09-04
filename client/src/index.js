@@ -12,22 +12,24 @@ import ReduxThunk from "redux-thunk";
 
 import Reducer from "./reducers";
 
-const createStoreWithMiddleware = applyMiddleware(
-  promiseMiddleware,
-  ReduxThunk
-)(createStore);
-
-ReactDOM.render(
-  <Provider
-    store={createStoreWithMiddleware(
-      Reducer,
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
-    )}
-  >
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById("root")
+const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(
+  createStore
 );
+
+const App = () => {
+  return (
+    <Provider
+      store={createStoreWithMiddleware(
+        Reducers,
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__()
+      )}
+    >
+      <BrowserRouter onUpdate={() => alert("ddd")}>
+        <Routes />
+      </BrowserRouter>
+    </Provider>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
