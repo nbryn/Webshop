@@ -1,12 +1,13 @@
 import { GET_GENRES } from "./ActionTypes";
 import axios from "axios";
+import { BOOK } from "./ServerRoutes";
 
 //This action is not used atm
 
 // Get genres from server
 export const getGenres = () => async dispatch => {
   try {
-    let response = await axios.get("http://localhost:3001/webshop/book/genres");
+    let response = await axios.get(`${BOOK}/webshop/book/genres`);
 
     // Forward information from server to the store
     dispatch({

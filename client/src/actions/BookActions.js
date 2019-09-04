@@ -1,5 +1,6 @@
 import { GET_BOOKS, GET_BOOK_DETAILS, CLEAR_BOOK_DETAILS } from "./ActionTypes";
 import axios from "axios";
+import { BOOK } from "./ServerRoutes";
 
 //Get all books from the server
 export const getBooks = (max, skip, prevState = []) => async dispatch => {
@@ -8,10 +9,7 @@ export const getBooks = (max, skip, prevState = []) => async dispatch => {
     skip
   };
 
-  let response = await axios.post(
-    "http://localhost:3001/webshop/book/shop",
-    requestData
-  );
+  let response = await axios.post(`${BOOK}/webshop/book/shop`, requestData);
 
   let responseData = {
     books: response.data.books,
@@ -27,7 +25,7 @@ export const getBooks = (max, skip, prevState = []) => async dispatch => {
 //Get Book Info from the server
 export function getBookDetails(id) {
   const request = axios
-    .get(`http://localhost:3001/webshop/book_by_id?id=${id}&type=array`)
+    .get(`${BOOK}/webshop/book_by_id?id=${id}&type=array`)
     .then(response => {
       return response.data[0];
     });

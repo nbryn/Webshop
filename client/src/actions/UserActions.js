@@ -7,13 +7,11 @@ import {
   GET_QUANTITY_IN_CART,
   REMOVE_BOOK_FROM_CART
 } from "./ActionTypes";
+import { USER } from "./ServerRoutes";
 
 // Persist user -> Dispatch NEW_User
 export const newUser = (user, history) => async dispatch => {
-  const response = await axios.post(
-    "http://localhost:3001/webshop/users/signup",
-    user
-  );
+  const response = await axios.post(`${USER}/webshop/users/signup`, user);
   history.push("/signin");
 
   // Dispatch NEW_USER action to store
@@ -25,7 +23,7 @@ export const newUser = (user, history) => async dispatch => {
 // Try to log user in -> Dispatch SET_USER/GET_ERRORS action
 export const login = (signInRequest, history) => async dispatch => {
   const response = await axios.post(
-    "http://localhost:3001/webshop/users/signin",
+    `${USER}/webshop/users/signin`,
     signInRequest
   );
   history.push("/user/dashboard");
@@ -45,10 +43,7 @@ export const authenticateUser = () => async dispatch => {
   // Get token from local storage
   const jwtToken = localStorage.getItem("jwtToken");
   const request = { token: jwtToken };
-  const response = await axios.post(
-    "http://localhost:3001/webshop/users/auth",
-    request
-  );
+  const response = await axios.post(`${USER}/webshop/users/auth`, request);
 
   // Dispatch AUTH_USER action to store
   dispatch({
@@ -69,9 +64,7 @@ export const signOut = () => dispatch => {
 // Forward book ID and User ID to server for persistence in cart
 export const addToCart = (bookId, userId) => {
   const response = axios
-    .post(
-      `http://localhost:3001/webshop/users/addtocart?bookId=${bookId}&userId=${userId}`
-    )
+    .post(`${USER}webshop/users/addtocart?bookId=${bookId}&userId=${userId}`)
     .then(response => response.data);
 
   // Dispatch happens @ component
@@ -84,7 +77,7 @@ export const addToCart = (bookId, userId) => {
 // Get quantity of books in users cart for display in the cart component
 export const getQuantityInCart = (cartItems, cart) => {
   const response = axios
-    .get(`http://localhost:3001/webshop/book_by_id?id=${cartItems}&type=array`)
+    .get(`${USER}webshop/book_by_id?id=${cartItems}&type=array`)
     .then(response => {
       // Loops through each book in cart and adds quantity to the response
       cart.forEach(book => {
@@ -109,7 +102,7 @@ export const getQuantityInCart = (cartItems, cart) => {
 export const removeCartItem = (bookId, userId) => {
   const response = axios
     .get(
-      `http://localhost:3001/webshop/users/removeBookFromCart?_id=${bookId}&userId=${userId}`
+      `${USER}webshop/users/removeBookFromCart?_id=${bookId}&userId=${userId}`
     )
     .then(response => {
       // Loops through each book in cart and adds quantity to the response
