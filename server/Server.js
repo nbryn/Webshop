@@ -284,70 +284,7 @@ app.get("/webshop/book/book_by_id", (request, response) => {
   }
 });
 
-// Get Book(s) by genre - e.g. /webshop/book_by_genre?genre=xxx&type=array
-app.get("/webshop/book_by_genre", (request, response) => {
-  let items, ids;
-  let type = request.query.type;
-  // Convert String to Array of Books
-  if (type === "array") {
-    ids = request.query.id.split(",");
-    items = ids.map(id => {
-      return mongoose.Types.ObjectId(id);
-    });
-  }
-  // Get Book(s) with specified genre from Database and populate author & genre
-  try {
-    Book.find({ genre: { $in: items } })
-      .populate("author")
-      .populate("genre")
-      .exec((error, books) => {
-        return response.status(200).send(books);
-      });
-  } catch (error) {
-    return response.status(404).json({
-      completed: false
-    });
-  }
-});
-
-// Get most purchased book(s) - e.g. "/webshop/book_by_sold?sortBy=purchased&order=desc&limit=4"
-app.get("/webshop/book_by_sold", (request, response) => {
-  // Default values if not present in query
-  let order = request.query.order ? request.query.order : "asc";
-  let sortBy = request.query.sortBy ? request.query.sortBy : "_id";
-  let limit = request.query.limit ? parseInt(request.query.limit) : 80;
-
-  try {
-    Book.find()
-      .populate("author")
-      .sort([[sortBy, order]])
-      .limit(limit)
-      .exec((error, books) => {
-        return response.status(200).send(books);
-      });
-  } catch (error) {
-    return response.status(404).json({
-      completed: false
-    });
-  }
-});
-
-// ------------------------------- Genre ------------------------------ //
-
-// Get all Genres
-app.get("/webshop/book/genres", (request, response) => {
-  try {
-    Genre.find({}, (error, genres) => {
-      return response.status(200).send(genres);
-    });
-  } catch (error) {
-    return response.status(404).json({
-      completed: false
-    });
-  }
-});
-
-// heroku
+// Heroku
 if (process.env.NODE_ENV === "PRODUCTION") {
   const path = require("path");
   app.get("/*", (request, response) => {
