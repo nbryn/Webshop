@@ -40,7 +40,7 @@ class NavBar extends Component {
           </Link>
           <Link
             className="navbar-brand"
-            To="/"
+            to="/"
             onClick={this.signOut.bind(this)}
           >
             Sign Out
