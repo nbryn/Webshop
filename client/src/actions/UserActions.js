@@ -7,7 +7,7 @@ import {
   GET_QUANTITY_IN_CART,
   REMOVE_BOOK_FROM_CART
 } from "./ActionTypes";
-import { USER } from "./ServerRoutes";
+import { USER, BOOK } from "./ServerRoutes";
 
 // Persist user -> Dispatch NEW_User
 export const newUser = (user, history) => async dispatch => {
@@ -74,7 +74,7 @@ export const addToCart = (bookId, userId) => {
 // Get quantity of books in users cart for display in the cart component
 export const getQuantityInCart = (cartItems, cart) => {
   const response = axios
-    .get(`${USER}/book_by_id?id=${cartItems}&type=array`)
+    .get(`${BOOK}/book_by_id?id=${cartItems}&type=array`)
     .then(response => {
       // Loops through each book in cart and adds quantity to the response
       cart.forEach(book => {
