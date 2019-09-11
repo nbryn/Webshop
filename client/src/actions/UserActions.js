@@ -22,10 +22,7 @@ export const newUser = (user, history) => async dispatch => {
 };
 // Try to log user in -> Dispatch SET_USER/GET_ERRORS action
 export const login = (signInRequest, history) => async dispatch => {
-  const response = await axios.post(
-    `${USER}/webshop/users/signin`,
-    signInRequest
-  );
+  const response = await axios.post(`${USER}/signin`, signInRequest);
   history.push("/user/dashboard");
 
   // Set token in local storage
@@ -52,7 +49,7 @@ export const authenticateUser = () => async dispatch => {
   });
 };
 
-// Action for user signing out
+// Action for user logging out
 export const signOut = () => dispatch => {
   localStorage.removeItem("jwtToken");
   dispatch({
