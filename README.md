@@ -1,12 +1,12 @@
 <h1>Software Bookshop Web App</h1>
 <h2>Summary</h2>
-App with login feature where users can add/remove books to their personal cart.
+Web app where you can create an user and afterwards browse various software related books which you can add to your cart.
 <h3>Heroku</h3>
 <ui>
 <li>Link: <link> http://software-bookshop.herokuapp.com/</link> </li>
 <li>Username: test@test.com - Or make your own account </li>
 <li>Password: 1234 </li>
-<li>Loading the app can take up to two minutes</li>
+<li>As the app is deployed through the free tier on Heroku it might have a load time of up to two minutes</li>
 </ui>
 <h3> Tech </h3>
 <ui>
