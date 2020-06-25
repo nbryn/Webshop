@@ -4,7 +4,7 @@ Web app where you can create an user and afterwards browse various software rela
 <h3>Heroku</h3>
 <ui>
 <li>Link: <link> http://software-bookshop.herokuapp.com/</link> </li>
-<li>Username: test@test.com - Or make your own account </li>
+<li>Username: test@test.org - Or make your own account </li>
 <li>Password: 1234 </li>
 <li>As the app is deployed through the free tier on Heroku it might have a load time of up to two minutes</li>
 </ui>

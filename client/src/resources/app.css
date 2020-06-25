@@ -67,7 +67,7 @@ header .logo {
 .sidebar {
   position: absolute;
   top: 0px;
-  left: 200px;
+  left: 0px;
   height: 817px;
   width: 75px;
   background-color: #0a0099fb;
@@ -449,6 +449,10 @@ header .logo {
 .card-item-wrapper .actions {
   display: flex;
   padding: 15px 0 10px 0;
+}
+
+.button.view-product {
+  text-align: center;
 }
 
 .card-item-wrapper .actions .button_wrapp:nth-child(1) {

@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000"
+    origin: "http://localhost:3000",
   })
 );
 
@@ -45,7 +45,7 @@ app.post("/webshop/users/auth", (request, response) => {
       return response.status(200).json({
         completed: false,
         message: "No such token",
-        authenticated: false
+        authenticated: false,
       });
     } else {
       return response.status(200).json({
@@ -57,7 +57,7 @@ app.post("/webshop/users/auth", (request, response) => {
         fullName: user.fullName,
         token: user.token,
         history: user.history,
-        cart: user.cart
+        cart: user.cart,
       });
     }
   });
@@ -70,13 +70,13 @@ app.post("/webshop/users/signup", (request, response) => {
   try {
     user.save((error, document) => {
       return response.status(200).json({
-        completed: true
+        completed: true,
       });
     });
   } catch (error) {
     response.status(400).json({
       completed: false,
-      error
+      error,
     });
   }
 });
@@ -88,7 +88,7 @@ app.post("/webshop/users/signin", (request, response) => {
     if (!user) {
       return response.status(400).json({
         completed: false,
-        message: "No such email"
+        message: "No such email",
       });
     } else {
       // Compare user input with password in Database
@@ -96,7 +96,7 @@ app.post("/webshop/users/signin", (request, response) => {
         if (!match) {
           return response.status(400).json({
             completed: false,
-            message: "Email and password does not match"
+            message: "Email and password does not match",
           });
         } else {
           user.createToken((error, user) => {
@@ -104,13 +104,10 @@ app.post("/webshop/users/signin", (request, response) => {
               return response.status(400).send(error);
             } else {
               // Set cookie value = token & confirm login
-              response
-                .cookie("authorized", user.token)
-                .status(200)
-                .json({
-                  user,
-                  token: user.token
-                });
+              response.cookie("authorized", user.token).status(200).json({
+                user,
+                token: user.token,
+              });
             }
           });
         }
@@ -127,7 +124,7 @@ app.post("/webshop/users/addToCart", (request, response) => {
     let alreadyInCart = false;
 
     // Loop through cart to check if book is in cart
-    doc.cart.forEach(book => {
+    doc.cart.forEach((book) => {
       if (book.id == request.query.bookId) {
         alreadyInCart = true;
       }
@@ -137,7 +134,7 @@ app.post("/webshop/users/addToCart", (request, response) => {
         {
           _id: request.query.userId,
           // If already in cart -> Find the duplicated book by ID
-          "cart.id": mongoose.Types.ObjectId(request.query.bookId)
+          "cart.id": mongoose.Types.ObjectId(request.query.bookId),
         },
         // Increment amount of book already in cart by 1
         { $inc: { "cart.$.quantity": 1 } },
@@ -159,9 +156,9 @@ app.post("/webshop/users/addToCart", (request, response) => {
               id: mongoose.Types.ObjectId(request.query.bookId),
               // Return all elements of user's cart
               quantity: 1,
-              date: Date.now()
-            }
-          }
+              date: Date.now(),
+            },
+          },
         },
         { new: true },
         (error, doc) => {
@@ -186,7 +183,7 @@ app.get("/webshop/users/removeBookFromCart", (request, response) => {
     { new: true },
     (error, doc) => {
       const cart = doc.cart;
-      const array = cart.map(book => {
+      const array = cart.map((book) => {
         return mongoose.Types.ObjectId(book.id);
       });
 
@@ -197,7 +194,7 @@ app.get("/webshop/users/removeBookFromCart", (request, response) => {
         .exec((error, booksInCart) => {
           return response.status(200).json({
             booksInCart,
-            cart
+            cart,
           });
         });
     }
@@ -214,7 +211,7 @@ app.get("/webshop/book/authors", (request, response) => {
     });
   } catch (error) {
     return response.status(404).json({
-      completed: false
+      completed: false,
     });
   }
 });
@@ -248,12 +245,12 @@ app.post("/webshop/book/shop", (request, response) => {
       .exec((error, books) => {
         return response.status(200).json({
           size: books.length,
-          books: books
+          books: books,
         });
       });
   } catch (error) {
     return response.status(400).json({
-      completed: false
+      completed: false,
     });
   }
 });
@@ -265,7 +262,7 @@ app.get("/webshop/book/book_by_id", (request, response) => {
   // Convert String to Array of Books
   if (type === "array") {
     ids = request.query.id.split(",");
-    items = ids.map(id => {
+    items = ids.map((id) => {
       return mongoose.Types.ObjectId(id);
     });
   }
@@ -279,7 +276,7 @@ app.get("/webshop/book/book_by_id", (request, response) => {
       });
   } catch (error) {
     return response.status(404).json({
-      completed: false
+      completed: false,
     });
   }
 });
