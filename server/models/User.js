@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const SALT = 12;
 
 require("dotenv").config();
 
@@ -51,26 +49,26 @@ const userSchema = new Schema({
 // Password hashing before user persistence
 userSchema.pre("save", function (next) {
   let user = this;
-  // New user/existing user updating password
-  if (user.isModified("password")) {
-    bcrypt.genSalt(SALT, function (error, salt) {
-      if (error) {
-        return next(error);
-      } else {
-        bcrypt.hash(user.password, salt, function (error, hash) {
-          if (error) {
-            return next(error);
-          } else {
-            user.password = user.password;
-            // User persistence
-            next();
-          }
-        });
-      }
-    });
-  } else {
-    next();
-  }
+  // // New user/existing user updating password
+  // if (user.isModified("password")) {
+  //   bcrypt.genSalt(SALT, function(error, salt) {
+  //     if (error) {
+  //       return next(error);
+  //     } else {
+  //       bcrypt.hash(user.password, salt, function(error, hash) {
+  //         if (error) {
+  //           return next(error);
+  //         } else {
+  user.password = user.password;
+  // User persistence
+  next();
+  //       }
+  //     });
+  //   }
+  // });
+  // } else {
+  //   next();
+  // }
 });
 
 // New token
@@ -92,13 +90,15 @@ userSchema.methods.createToken = function (callback) {
 
 // Check if password match
 userSchema.methods.verifyPassword = function (password, callback) {
-  bcrypt.compare(password, this.password, (error, match) => {
-    if (this.password !== password) {
-      return callback(error);
-    } else {
-      callback(null, match);
-    }
-  });
+  // bcrypt.compare(password, this.password, (error, match) => {
+  if (this.password !== password) {
+    const error = "Error";
+    return callback(error);
+  } else {
+    const match = "Match";
+    callback(null, match);
+  }
+  // });
 };
 
 const User = mongoose.model("user", userSchema);
