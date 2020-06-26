@@ -55,6 +55,7 @@ class BookInfo extends Component {
                   // Checks if user is logged ind
                   if (localStorage.getItem("jwtToken")) {
                     this.addBookToCart(bookDetails._id, userId);
+                    alert("Book added to cart")
                   } else {
                     this.props.history.push("/signup");
                   }

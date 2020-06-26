@@ -9,7 +9,7 @@ class Cart extends Component {
   state = {
     loading: true,
     totalPrice: 0,
-    showTotal: false
+    showTotal: false,
   };
 
   componentDidMount() {
@@ -21,7 +21,7 @@ class Cart extends Component {
       // Checks if cart is empty
       if (user.data.cart.length > 0) {
         // Push ID of books in the cart into the cartItems array
-        user.data.cart.forEach(book => {
+        user.data.cart.forEach((book) => {
           cartItems.push(book.id);
         });
 
@@ -43,17 +43,17 @@ class Cart extends Component {
   );
 
   // Calculate total price for all items in users cart
-  calculateTotalPrice = cartItems => {
+  calculateTotalPrice = (cartItems) => {
     let totalPrice = 0;
 
-    cartItems.forEach(book => {
+    cartItems.forEach((book) => {
       totalPrice += parseInt(book.price, 10) * book.quantity;
     });
 
     // Update state to show total in UI
     this.setState({
       totalPrice,
-      showTotal: true
+      showTotal: true,
     });
   };
 
@@ -62,7 +62,7 @@ class Cart extends Component {
       // Remove total from UI if cart is empty
       if (this.props.user.booksInCart < 1) {
         this.setState({
-          showTotal: false
+          showTotal: false,
         });
         // Calculate price again after selected book is removed
       } else {
@@ -80,9 +80,10 @@ class Cart extends Component {
           <div className="user-cart">
             <CartItem
               user={this.props.user}
-              removeBookFromCart={(bookId, userId) =>
-                this.removeBookFromCart(bookId, userId)
-              }
+              removeBookFromCart={(bookId, userId) => {
+                this.removeBookFromCart(bookId, userId);
+                alert("Book removed from cart");
+              }}
             />
             {this.state.showTotal ? (
               <div>
@@ -102,9 +103,9 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 
