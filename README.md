@@ -2,6 +2,7 @@
 
 ## Summary 
 Web app where you can create an user and afterwards browse various software related books which you can add to your cart. <br /> 
+
 The app is deployed to Heroku and can be accessed using the link below.
 
 ## Heroku
